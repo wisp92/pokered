@@ -17,6 +17,9 @@ It's a mostly-vanilla hack that focuses on fixing game engine bugs and oversight
 Additionally, trainer AI routines are improved and multiple quality-of-life improvements have been added.  
 Think of it as what the Nintendo Virtual Console re-release of red & blue might have been (plus a few extra goodies).  
 
+Don't like the non-vanilla changes? Prefer only the bugfixes and AI improvements? Want a codebase from which to launch your own rom hack?
+Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is what you want. Head on over and start compiling.
+
 ![Title Screen](/screenshots/bgb00001.bmp?raw=true)
 
 ![Rematches](/screenshots/bgb00003.bmp?raw=true)
