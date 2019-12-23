@@ -253,7 +253,6 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - Adjustments to moves  
   - Stat-down moves no longer have a 25% miss chance in AI matches
   - Moves that hit multiple times in a turn now calculate damage and critical hits for each individual attack
-  - Accuracy of Bind and Wrap switched (probably was originally intented to be this way)
   - Trapping moves nerfed big time to prevent the new AI from cheesing them:
     - Switching out of a trapping move ends it immediately and wastes its user's turn (prevents PP underflow glitch too)
 	- Each time a trapping move is used and hits, user's speed reduced 25% until recalculated through other mechanics
