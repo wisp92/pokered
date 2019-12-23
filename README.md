@@ -81,8 +81,6 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - Minimal changes to battle mechanics necessitated by AI improvements
   - Trapping move mechanics nerfed to prevent PP underflow glitch as well as stopping merciless, unwinnable abuse by AI trainers
 	- They now end, ending the turn with no further attack, if the target switches pkmn
-    - Accuracy reduced
-	- Power increased
 	- Upon hitting, user's speed reduced 25% until recalculated through other mechanics
 	- The user's Cry is played on the final turn of a trapping move to signal its end
   - Adjustment to the sleep condition
@@ -99,6 +97,7 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - The 999 cap for reflect and light screen is now consolidated into a single function
 - Rest now more efficient in undoing brn/par stat changes
 - Catching a pokemon with brn/par no longer applies the stat penalties to its party data stats
+- Trapping move power & accuracy reverted to normal
 
 
 #New features & adjustments since last non-beta version:
@@ -254,10 +253,9 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - Adjustments to moves  
   - Stat-down moves no longer have a 25% miss chance in AI matches
   - Moves that hit multiple times in a turn now calculate damage and critical hits for each individual attack
+  - Accuracy of Bind and Wrap switched (probably was originally intented to be this way)
   - Trapping moves nerfed big time to prevent the new AI from cheesing them:
     - Switching out of a trapping move ends it immediately and wastes its user's turn (prevents PP underflow glitch too)
-    - Accuracy reduced
-	- Power increased
 	- Each time a trapping move is used and hits, user's speed reduced 25% until recalculated through other mechanics
     - A pkmn plays its cry to signal the last turn of the trapping move
   - Ghost moves (i.e. just Lick) do 2x against psychic as was always intended

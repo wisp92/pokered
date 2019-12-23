@@ -7313,7 +7313,7 @@ ApplyBadgeStatBoosts:
 ;joenote - only apply badge stat boosts in wild battles to keep parity with ai trainers
 	ld a, [wIsInBattle]
 	cp $1 ; is it a wild battle?
-	jr z, .return ; return if not wild
+	jr nz, .return ; return if not wild
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	ld a, [wObtainedBadges]
 	ld b, a
