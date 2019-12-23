@@ -1706,10 +1706,22 @@ wMoveMissed:: ; d05f
 
 wPlayerStatsToDouble:: ; d060
 ; always 0
+;joenote - putting this back into use
+;set bit to flag the stat
+;bit 0 - attack
+;bit 1 - defence
+;bit 2 - speed
+;bit 3 - special
 	ds 1
 
 wPlayerStatsToHalve:: ; d061
 ; always 0
+;joenote - putting this back into use
+;set bit to flag the stat
+;bit 0 - attack
+;bit 1 - defence
+;bit 2 - speed
+;bit 3 - special
 	ds 1
 
 wPlayerBattleStatus1:: ; d062
@@ -1742,10 +1754,22 @@ wPlayerBattleStatus3:: ; d064
 
 wEnemyStatsToDouble:: ; d065
 ; always 0
+;joenote - putting this back into use
+;set bit to flag the stat
+;bit 0 - attack
+;bit 1 - defence
+;bit 2 - speed
+;bit 3 - special
 	ds 1
 
 wEnemyStatsToHalve:: ; d066
 ; always 0
+;joenote - putting this back into use
+;set bit to flag the stat
+;bit 0 - attack
+;bit 1 - defence
+;bit 2 - speed
+;bit 3 - special
 	ds 1
 
 wEnemyBattleStatus1:: ; d067
@@ -2988,7 +3012,14 @@ wDestinationMap:: ; d71a
 ; destination map (for certain types of special warps, not ordinary walking)
 	ds 1
 
-wUnusedD71B:: ; d71b
+wUnusedD71B:: ; d71b	;joenote - used as a backup address for a stat being raised/lowered via stat mods
+	;0 = none
+	;1 = attack
+	;2 = defense
+	;3 = speed
+	;4 = special
+	;5 = accuracy
+	;6 = evasion
 	ds 1
 
 wTileInFrontOfBoulderAndBoulderCollisionResult:: ; d71c

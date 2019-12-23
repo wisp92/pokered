@@ -1,6 +1,6 @@
 # Shin Pokémon Red and Blue
 
-Version 1.08
+Version 1.09
 
 Download the IPS patch file of the version you want and apply it to its respective USA rom.  
 
@@ -95,43 +95,27 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 
 #Hack-Induced Bugfixes & Adjustments since last non-beta version:
 -----------
-- Included alternative main.asm and pokered.link files with instructions on how to recompile with red/green or yellow pkmn sprites
-- Fixed a major bug where the sleep effect function was writing to the wrong address in the BC register
-- Reworked some random numbers in trainer AI
-- Mew's base stats are now handled in the same block of memory as all the others, so some space is saved in home.asm
-- Minor text tweeks for gender neutrality
-- Pressing SELECT to surf under forced cycling will now do nothing instead of throwing up an invisible text box
-- Made more space in Rom Bank 0 by commenting out unused functions in home.asm
-- Trapping moves made slightly more accurate and slightly less damaging
-- Commented out exclamation point code from core.asm to save space (leftovers from japanese grammar)
-- Fixed an bug where player move power was always getting zeroed upon selection (difficulty increase)
-	- AI can now switch out of supereffective moves, use counter, and not use def-up moves against special attacks
-- Fixed a major bug that caused all enemy pokemon to give +255 stat exp for every stat (difficulty increase)
+- Gamefreak's abandoned functions for halving and doubling stats have been modified and put back into use
+- The 999 cap for reflect and light screen is now consolidated into a single function
+- Rest now more efficient in undoing brn/par stat changes
+- Catching a pokemon with brn/par no longer applies the stat penalties to its party data stats
 
 
 #New features & adjustments since last non-beta version:
 -----------
-- Mind battle with future Trainer RED via the new girl outside Bill's villa
-- AI routine 1 heavily discourages boosting defense against special, OHKO, or static-damaging attacks
-- You can now battle missingno on the infamous cinnabar shoreline
-  - You must have gotten the pokedex diploma first
-  - Activated the traditional way via the "old man in viridian" method
-  - Uses trainer battle routines (different music, uses AI, and uncatchable)
-  - Uses fossil kabutops graphics and has its own defined base stats data
-    - Prevents terrible glitches
-	- Won't mess up your hall of fame
-  - Upon encountering, it still gives 128 of the item in the 6th slot
-- You can now play as a girl when starting a new game
-  - Has front, back, walking, and cycling sprites
-  - Has unique default names when starting a new game
-- In-battle way to check if enemy pokemon is owned in the pokedex
-  - On the main battle menu, place the cursor over an option in the left column
-  - Press the Select button
-  - The enemy pokemon will play its cry if registered as owned
-- AI routine 2 now activates on the 1st turn after sendout (as intended) instead of the 2nd
-- You can now check DVs or stat exp by holding down a button and entering the status screen
-  - hold SELECT for stat exp
-  - hold START for DVs
+- New custom function for undoing the stat changes of burn and paralysis
+  - undoing paralysis is accurate to within 0 to -3 points
+  - undoing burn is accurate to within 0 to -1 point
+- AI using full heal now reverts brn/par stat changes
+- Condition healing items (including using Full Restore at max hp) no longer reset all stats
+  - Burn heal undoes the attack stat changes
+  - Paralyze heal undoes the speed stat changes
+  - Full restore at max hp undoes the stat changes of brn/par
+- Full Restore when used in battle to heal HP now undoes the stat changes of brn/par
+- Haze and status-curing items now clear the toxic counter
+- The function that applies badge stat-ups has been reworked
+  - now selectively boosts the correct stat when called during a stat-up/down effect
+  - as a result, badge boosts are no longer temporary
 
 
 #Bugfixes:
@@ -149,6 +133,7 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 	 - also does this when evolving via level-up for the new evolution's movelist
   - Burn & Paralyze stat penalties are now properly applied after Speed & Attack stats get updated/recalculated
   - Badge stat-ups don't get stacked anymore
+  - The function that applies badge stat-ups now selectively boosts the correct stat when called during a stat-up/down effect
   - If player is frozen, the hyperbeam recharge bit is now cleared
      - now matches how enemy mon's recharge bit is cleared upon being frozen
      - this prevents getting stuck in a loop unable to do anything on your turn
@@ -161,7 +146,10 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
      - AI will now treat a move as neutral if type 1 makes it supereffective but type 2 makes it not effective
   - Stat changes from burn and paralyze are applied when the ai sends out a pkmn with those conditions
   - AI routine #2 (prioritize buffing or use a status move) now activates on the 1st turn after sendout instead of the 2nd
-
+  - New custom function for undoing the stat changes of burn and paralysis
+    - undoing paralysis is accurate to within 0 to -3 points
+    - undoing burn is accurate to within 0 to -1 point
+  
 - Move fixes
   - dire hit/focus energy now quadruples crit rate instead of quarters
   - sleep now normal-chance hits a pkmn recharging from hyperbeam, but has no effect if it's already status-effected
@@ -175,13 +163,13 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 	- recoil damage from jump kicks or hurting oneself in confusion is now applied to user's substitute
   - healing moves work with restoring exactly 255 or 511 hp 
   - light screen and reflect now have a cap of 999
-  - haze removing sleep/freeze will not prevent a multi-turn move from getting stuck
+  - Haze removing sleep/freeze will not prevent a multi-turn move from getting stuck
      - Fixed by allowing sleeping/frozen pkmn to use a move after haze restores them
      - on the plus size, haze now restores both opponent and user's status conditions as was intended in gen 1
+  - Haze resets the enemy and player toxic counter
   - Rest now does the following:
      - clears the toxic bit and toxic counter
-     - if burn is removed, attack is doubled to undo its stat detriment (not perfect for atk values < 4)
-     - if paralyze is removed, speed is quadrupled to undo its stat detriment (not perfect for atk values < 8)
+     - undoes the stat changes of burn and paralysis
   - fixed-damage moves (seismic toss, dragon rage, etc) can no longer critically hit
   - fixed-damage moves now obey type immunities
   - Transform will no longer copy the opponent's Transform move. It's swapped-out for Struggle
@@ -231,6 +219,12 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 	  - cannot use the surfboard if being forced to ride the bicycle
 	  - no longer freezes the game when using it from the item menu to get back on land
 	  - the menu text will glitch a little, but only for a split-second and does not impact gameplay
+  - The Full Heal used by the AI now undoes brn/par stat changes
+  - Condition healing items (including using Full Restore at max hp) no longer reset all stats
+    - Burn heal undoes the attack stat changes
+    - Paralyze heal undoes the speed stat changes
+    - Full restore at max hp undoes the stat changes of brn/par
+  - Full Restore when used in battle to heal HP now undoes the stat changes of brn/par
 
 
 #TWEAKS:
@@ -281,9 +275,6 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - Sleep does not prevent choosing a move
   - Waking up from sleep does not waste the turn and the chosen move is used
   - Badge stat-ups are now only applied in wild pokemon battles to give parity to enemy trainers
-  - Badge stat-ups are now temporary boosts
-    - They are applied upon battle start or switching-in
-    - They are not applied at all after stat recalculations, so any stat change on your pkmn cancels all of them
   - The effect of X Accuracy is no longer applied to one-hit K.O. moves (it originally made them auto-hit)
   - The limiter on vitamins is raised to a max of 62720 stat exp after the elite 4 have been beaten
   - Pkmn added to the player's party (either as a gift or in-game trade) have at the least DVs of 9,8,8,8

@@ -4509,21 +4509,7 @@ GetDamageVarsForPlayerAttack:
 ; reflect and light screen boosts do not cap the stat at 999, so weird things will happen during stats scaling if
 ; a Pokemon with 512 or more Defense has used Reflect, or if a Pokemon with 512 or more Special has used Light Screen
 ;;;;;joenote - adding in a 999 cap
-	;b register contains high byte & c register contains low byte
-	ld a, c ;let's work on low byte first. Note that decimal 999 is $03E7 in hex.
-	sub 999 % $100 ;a = a - ($03E7 % $100). Gives a = a - $E7. A byte % $100 always gives the lesser nibble.
-	;Note that if a < $E7 then the carry bit 'c' in the flag register gets set due to overflowing with a negative result.
-	ld a, b ;now let's work on the high byte
-	sbc 999 / $100 ;a = a - ($03E7 / $100 + c_flag). Gives a = a - ($03 + c_flag). A byte / $100 always gives the greater nibble.
-	;Note again that if a < $03 then the carry bit remains set. 
-	;If the bit is already set from the lesser nibble, then its addition here can still make it remain set if a is low enough.
-	jr c, .physicalAttackCritCheck ;jump to next marker if the c_flag is set. This only remains set if HL <  the cap of $03E7.
-	;else let's continue and set the 999 cap
-	ld a, 999 / $100 ; else load $03 into a
-	ld b, a ;and store it as the high byte
-	ld a, 999 % $100 ; else load $E7 into a
-	ld c, a ;and store it as the low byte
-	;now registers b & c together contain $03E7 for a capped stat value of 999
+	call BC999cap
 ;;;
 .physicalAttackCritCheck
 	ld hl, wBattleMonAttack
@@ -4558,21 +4544,7 @@ GetDamageVarsForPlayerAttack:
 ; reflect and light screen boosts do not cap the stat at 999, so weird things will happen during stats scaling if
 ; a Pokemon with 512 or more Defense has used Reflect, or if a Pokemon with 512 or more Special has used Light Screen
 ;;;;;joenote - adding in a 999 cap
-	;b register contains high byte & c register contains low byte
-	ld a, c ;let's work on low byte first. Note that decimal 999 is $03E7 in hex.
-	sub 999 % $100 ;a = a - ($03E7 % $100). Gives a = a - $E7. A byte % $100 always gives the lesser nibble.
-	;Note that if a < $E7 then the carry bit 'c' in the flag register gets set due to overflowing with a negative result.
-	ld a, b ;now let's work on the high byte
-	sbc 999 / $100 ;a = a - ($03E7 / $100 + c_flag). Gives a = a - ($03 + c_flag). A byte / $100 always gives the greater nibble.
-	;Note again that if a < $03 then the carry bit remains set. 
-	;If the bit is already set from the lesser nibble, then its addition here can still make it remain set if a is low enough.
-	jr c, .specialAttackCritCheck ;jump to next marker if the c_flag is set. This only remains set if HL <  the cap of $03E7.
-	;else let's continue and set the 999 cap
-	ld a, 999 / $100 ; else load $03 into a
-	ld b, a ;and store it as the high byte
-	ld a, 999 % $100 ; else load $E7 into a
-	ld c, a ;and store it as the low byte
-	;now registers b & c together contain $03E7 for a capped stat value of 999
+	call BC999cap
 ;;;
 .specialAttackCritCheck
 	ld hl, wBattleMonSpecial
@@ -4665,21 +4637,7 @@ GetDamageVarsForEnemyAttack:
 ; reflect and light screen boosts do not cap the stat at 999, so weird things will happen during stats scaling if
 ; a Pokemon with 512 or more Defense has used Reflect, or if a Pokemon with 512 or more Special has used Light Screen
 ;;;;;joenote - adding in a 999 cap
-	;b register contains high byte & c register contains low byte
-	ld a, c ;let's work on low byte first. Note that decimal 999 is $03E7 in hex.
-	sub 999 % $100 ;a = a - ($03E7 % $100). Gives a = a - $E7. A byte % $100 always gives the lesser nibble.
-	;Note that if a < $E7 then the carry bit 'c' in the flag register gets set due to overflowing with a negative result.
-	ld a, b ;now let's work on the high byte
-	sbc 999 / $100 ;a = a - ($03E7 / $100 + c_flag). Gives a = a - ($03 + c_flag). A byte / $100 always gives the greater nibble.
-	;Note again that if a < $03 then the carry bit remains set. 
-	;If the bit is already set from the lesser nibble, then its addition here can still make it remain set if a is low enough.
-	jr c, .physicalAttackCritCheck ;jump to next marker if the c_flag is set. This only remains set if HL <  the cap of $03E7.
-	;else let's continue and set the 999 cap
-	ld a, 999 / $100 ; else load $03 into a
-	ld b, a ;and store it as the high byte
-	ld a, 999 % $100 ; else load $E7 into a
-	ld c, a ;and store it as the low byte
-	;now registers b & c together contain $03E7 for a capped stat value of 999
+	call BC999cap
 ;;;
 .physicalAttackCritCheck
 	ld hl, wEnemyMonAttack
@@ -4714,21 +4672,7 @@ GetDamageVarsForEnemyAttack:
 ; reflect and light screen boosts do not cap the stat at 999, so weird things will happen during stats scaling if
 ; a Pokemon with 512 or more Defense has used Reflect, or if a Pokemon with 512 or more Special has used Light Screen
 ;;;;;joenote - adding in a 999 cap
-	;b register contains high byte & c register contains low byte
-	ld a, c ;let's work on low byte first. Note that decimal 999 is $03E7 in hex.
-	sub 999 % $100 ;a = a - ($03E7 % $100). Gives a = a - $E7. A byte % $100 always gives the lesser nibble.
-	;Note that if a < $E7 then the carry bit 'c' in the flag register gets set due to overflowing with a negative result.
-	ld a, b ;now let's work on the high byte
-	sbc 999 / $100 ;a = a - ($03E7 / $100 + c_flag). Gives a = a - ($03 + c_flag). A byte / $100 always gives the greater nibble.
-	;Note again that if a < $03 then the carry bit remains set. 
-	;If the bit is already set from the lesser nibble, then its addition here can still make it remain set if a is low enough.
-	jr c, .specialAttackCritCheck ;jump to next marker if the c_flag is set. This only remains set if HL <  the cap of $03E7.
-	;else let's continue and set the 999 cap
-	ld a, 999 / $100 ; else load $03 into a
-	ld b, a ;and store it as the high byte
-	ld a, 999 % $100 ; else load $E7 into a
-	ld c, a ;and store it as the low byte
-	;now registers b & c together contain $03E7 for a capped stat value of 999
+	call BC999cap
 ;;;
 .specialAttackCritCheck
 	ld hl, wEnemyMonSpecial
@@ -5073,7 +5017,7 @@ CriticalHitTest:
 	ld a, [de]
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	bit GETTING_PUMPED, a        ; test for focus energy
-	jr z, .noFocusEnergyUsed	 ;if getting pumped bit not set, then focus evergy not used
+	jr z, .noFocusEnergyUsed	 ;if getting pumped bit not set, then focus energy not used
 	;else focus energy was used
 	sla b						 ;*2 for focus energy (effective +2x crit rate)
 	jr c, .capcritical
@@ -7027,16 +6971,6 @@ LoadEnemyMonData:
 	ld b, FLAG_SET
 	ld hl, wPokedexSeen
 	predef FlagActionPredef ; mark this mon as seen in the pokedex
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;joenote - if this is a trainer battle, set the pkmn as being sent out
-	push af
-	ld a, [wIsInBattle]
-	cp $2 ; is it a trainer battle?
-	jr nz, .end_set_sendout
-	callba SetAISentOut	;joenote - custom function
-.end_set_sendout
-	pop af
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	ld hl, wEnemyMonLevel
 	ld de, wEnemyMonUnmodifiedLevel
 	ld bc, 1 + NUM_STATS * 2
@@ -7048,10 +6982,17 @@ LoadEnemyMonData:
 	ld [hli], a
 	dec b
 	jr nz, .statModLoop
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;joenote - need to apply stat changes from burn and paralyze when the ai pkmn gets sent back in
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;joenote - if this is a trainer battle, set the pkmn as being sent out and apply any burn/par stat changes
+	push af
+	ld a, [wIsInBattle]
+	cp $2 ; is it a trainer battle?
+	jr nz, .end_set_sendout
+	callba SetAISentOut	;joenote - custom function
 	call ApplyBurnAndParalysisPenaltiesToEnemy
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.end_set_sendout
+	pop af
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	ret
 
 ; calls BattleTransition to show the battle transition animation and initializes some battle variables
@@ -7177,6 +7118,7 @@ LoadPlayerBackPic:
 	predef_jump CopyUncompressedPicToTilemap
 
 ; does nothing since no stats are ever selected (barring glitches)	
+ ;joenote - getting this up and running again
 DoubleOrHalveSelectedStats:
 	callab DoubleSelectedStats
 	jpab HalveSelectedStats
@@ -7370,9 +7312,10 @@ CalculateModifiedStat:
 ApplyBadgeStatBoosts:
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
-	ret z ; return if link battle
+	jr z, .return ; return if link battle
 	ld a, [wObtainedBadges]
 	ld b, a
+	call .selectiveBadgeBoost	;joenote - jump down and run new section
 	ld hl, wBattleMonAttack
 	ld c, $4
 ; the boost is applied for badges whose bit position is even
@@ -7389,8 +7332,10 @@ ApplyBadgeStatBoosts:
 	srl b
 	dec c
 	jr nz, .loop
+.return	;joenote - clear out stat mod address offset backup
+	xor a
+	ld [wUnusedD71B], a
 	ret
-
 ; multiply stat at hl by 1.125
 ; cap stat at 999
 .applyBoostToStat
@@ -7419,7 +7364,31 @@ ApplyBadgeStatBoosts:
 	ld a, 999 % $100
 	ld [hld], a
 	ret
-
+;joenote - check for backed up stat mod address offset to selectively apply badge boosts
+.selectiveBadgeBoost
+	;b holds the obtained badge bits that are used to apply boosts
+	ld a, [wUnusedD71B]	;get the backed-up offset into 'a'
+	and a
+	ret z	;kick out if zero so the function will apply all normal badge boosts
+	ld c, $5	;load a value of 5 into c
+	cp c	;set carry  flag if the offset in a is < c's value (stat being affected is neither accuracy or evasion)
+	ret nc 	;kick out if carry flag not set so the function will apply all normal badge boosts
+	ld c, b	;put the badge bits into c and push onto stack
+	push bc
+	ld c, a	;put the offset value into c. it should be 1, 2, 3, or 4. use it as a loop counter.
+	ld a, $80	;set an initial bit that gets rolled around
+.selectloop
+	rla
+	rla
+	dec c
+	jr nz, .selectloop
+	pop bc	;get the badge bits back into c
+	ld b, a	;put the selected badge boost into b
+	ld a, c ;put badge bits into 'a'
+	and b	;AND a with b to clear the badge boost if you don't have that badge
+	ld b, a	;store it back into b
+	ret
+	
 LoadHudAndHpBarAndStatusTilePatterns:
 	call LoadHpBarAndStatusTilePatterns
 
@@ -8297,6 +8266,8 @@ StatModifierUpEffect:
 .incrementStatMod
 	ld c, a
 	ld b, $0
+	inc a ;joenote - backup the address offset for the stat mod 
+	ld [wUnusedD71B], a	;joenote - backup the address offset for the stat mod
 	add hl, bc
 	ld b, [hl]
 	inc b ; increment corresponding stat mod
@@ -8427,9 +8398,9 @@ UpdateStatDone:
 .applyBadgeBoostsAndStatusPenalties
 	ld a, [H_WHOSETURN]
 	and a
-	;call z, ApplyBadgeStatBoosts ; whenever the player uses a stat-up move, badge boosts get reapplied again to every stat,
+	call z, ApplyBadgeStatBoosts ; whenever the player uses a stat-up move, badge boosts get reapplied again to every stat,
 	                             ; even to those not affected by the stat-up move (will be boosted further)
-								 ;joenote - commented out this line
+								 ;joenote - this has been fixed
 	ld hl, MonsStatsRoseText
 	call PrintText
 
@@ -8555,6 +8526,8 @@ StatModifierDownEffect:
 .decrementStatMod
 	ld c, a
 	ld b, $0
+	inc a ;joenote - backup the address offset for the stat mod 
+	ld [wUnusedD71B], a	;joenote - backup the address offset for the stat mod
 	add hl, bc
 	ld b, [hl]
 	dec b ; dec corresponding stat mod
@@ -8655,9 +8628,9 @@ UpdateLoweredStatDone:
 .ApplyBadgeBoostsAndStatusPenalties
 	ld a, [H_WHOSETURN]
 	and a
-	;call nz, ApplyBadgeStatBoosts ; whenever the player uses a stat-down move, badge boosts get reapplied again to every stat,
+	call nz, ApplyBadgeStatBoosts ; whenever the player gets hit with a stat-down move, badge boosts get reapplied again to every stat,
 	                              ; even to those not affected by the stat-down move (will be boosted further)
-								  ;joenote - commented out this line
+								  ;joenote - this is now fixed
 	ld hl, MonsStatsFellText
 	call PrintText
 	
@@ -9665,4 +9638,24 @@ CryFunc:
 	call PlayCry
 	pop bc
 	pop hl
+	ret
+
+;joenote - caps the stat in bc to 999
+BC999cap:
+	;b register contains high byte & c register contains low byte
+	ld a, c ;let's work on low byte first. Note that decimal 999 is $03E7 in hex.
+	sub 999 % $100 ;a = a - ($03E7 % $100). Gives a = a - $E7. A byte % $100 always gives the lesser nibble.
+	;Note that if a < $E7 then the carry bit 'c' in the flag register gets set due to overflowing with a negative result.
+	ld a, b ;now let's work on the high byte
+	sbc 999 / $100 ;a = a - ($03E7 / $100 + c_flag). Gives a = a - ($03 + c_flag). A byte / $100 always gives the greater nibble.
+	;Note again that if a < $03 then the carry bit remains set. 
+	;If the bit is already set from the lesser nibble, then its addition here can still make it remain set if a is low enough.
+	jr c, .donecapping ;jump to next marker if the c_flag is set. This only remains set if BC <  the cap of $03E7.
+	;else let's continue and set the 999 cap
+	ld a, 999 / $100 ; else load $03 into a
+	ld b, a ;and store it as the high byte
+	ld a, 999 % $100 ; else load $E7 into a
+	ld c, a ;and store it as the low byte
+	;now registers b & c together contain $03E7 for a capped stat value of 999
+.donecapping
 	ret
