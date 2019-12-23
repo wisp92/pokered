@@ -1839,12 +1839,8 @@ LoadBattleMonFromParty:
 	call CopyData
 	call ApplyBurnAndParalysisPenaltiesToPlayer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;joenote - only apply badge stat boosts in wild battles to keep parity with ai trainers
-	ld a, [wIsInBattle]
-	cp $1 ; is it a wild battle?
-	jr nz, .notwild
+;joenote - apply badge stat boosts
 	call ApplyBadgeStatBoosts
-.notwild
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	ld a, $7 ; default stat modifier
 	ld b, NUM_STAT_MODS
@@ -7313,6 +7309,12 @@ ApplyBadgeStatBoosts:
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
 	jr z, .return ; return if link battle
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;joenote - only apply badge stat boosts in wild battles to keep parity with ai trainers
+	ld a, [wIsInBattle]
+	cp $1 ; is it a wild battle?
+	jr z, .return ; return if not wild
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	ld a, [wObtainedBadges]
 	ld b, a
 	call .selectiveBadgeBoost	;joenote - jump down and run new section
