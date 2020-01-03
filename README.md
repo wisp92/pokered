@@ -1,6 +1,6 @@
 # Shin Pokémon Red and Blue
 
-Version 1.09
+Version 1.1
 
 Download the IPS patch file of the version you want and apply it to its respective USA rom.  
 
@@ -93,28 +93,17 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 
 #Hack-Induced Bugfixes & Adjustments since last non-beta version:
 -----------
-- Gamefreak's abandoned functions for halving and doubling stats have been modified and put back into use
-- The 999 cap for reflect and light screen is now consolidated into a single function
-- Rest now more efficient in undoing brn/par stat changes
-- Catching a pokemon with brn/par no longer applies the stat penalties to its party data stats
-- Trapping move power & accuracy reverted to normal
+- Fixed some issues with text in celadon floor 3, outside bill's house, and in vermillion city
+- Fixed some incorrect placements in the pkmn random table lists
+- Consolidated custom funcions into individual files for easy sorting
 
 
 #New features & adjustments since last non-beta version:
 -----------
-- New custom function for undoing the stat changes of burn and paralysis
-  - undoing paralysis is accurate to within 0 to -3 points
-  - undoing burn is accurate to within 0 to -1 point
-- AI using full heal now reverts brn/par stat changes
-- Condition healing items (including using Full Restore at max hp) no longer reset all stats
-  - Burn heal undoes the attack stat changes
-  - Paralyze heal undoes the speed stat changes
-  - Full restore at max hp undoes the stat changes of brn/par
-- Full Restore when used in battle to heal HP now undoes the stat changes of brn/par
-- Haze and status-curing items now clear the toxic counter
-- The function that applies badge stat-ups has been reworked
-  - now selectively boosts the correct stat when called during a stat-up/down effect
-  - as a result, badge boosts are no longer temporary
+- The ABCD teleport glitch has been fixed
+- The lift key in the rocket hideout drops during the end of battle text like in Yellow-version
+- A wild marowak is no longer assumed to be the ghost marowak
+- Pokedoll is disallowed during ghost marowak battle
 
 
 #Bugfixes:
@@ -224,6 +213,10 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
     - Paralyze heal undoes the speed stat changes
     - Full restore at max hp undoes the stat changes of brn/par
   - Full Restore when used in battle to heal HP now undoes the stat changes of brn/par
+  - No more ABCD glitched sprites when using teleport without a super gameboy
+  - The lift key in the rocket hideout drops during the end of battle text like in Yellow-version
+  - An unused bit is now used to determine the ghost marowak battle
+  - Pokedoll is disallowed during ghost marowak battle
 
 
 #TWEAKS:

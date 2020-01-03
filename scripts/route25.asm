@@ -51,8 +51,8 @@ Route25TextPointers:
 	dw Route25Text8
 	dw Route25Text9
 	dw PickUpItemText
+	dw Route25TextRed
 	dw Route25Text11
-	dw Route25Text12
 	
 Route25TrainerHeader0:
 	dbEventFlagBit EVENT_BEAT_ROUTE_25_TRAINER_0
@@ -192,7 +192,7 @@ Route25Text9:
 	jp TextScriptEnd
 	
 ;joenote - text for red battle
-Route25Text12:
+Route25TextRed:
 	TX_ASM
 	ld hl, Route25PrintText12
 	call PrintText

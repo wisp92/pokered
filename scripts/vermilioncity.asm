@@ -133,15 +133,14 @@ VermilionCityTextPointers:
 	dw VermilionCityText4
 	dw VermilionCityText5
 	dw VermilionCityText6
-	dw VermilionCityText7;joenote - v1.01 - this is bugged if there's a 7th object. object 7's text pointer plays instead...
+	dw VermilionPKMNText
 	dw VermilionCityText8
 	dw MartSignText
 	dw PokeCenterSignText
 	dw VermilionCityText11
 	dw VermilionCityText12
 	dw VermilionCityText13
-	dw VermilionPKMNText
-	dw VermilionCityText7	;...so it's being copied down here as text pointer 15. now it works.
+	dw VermilionCityText7;joenote - moved this to position 14
 
 VermilionCityText1:
 	TX_FAR _VermilionCityText1

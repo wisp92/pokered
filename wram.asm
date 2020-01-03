@@ -3042,6 +3042,7 @@ wUnusedD721:: ; d721	;joenote - use to set various wram flags
 	;bit 0 - player is girl if set
 	;bit 1 - activate cinnabar shore if set
 	;bit 2 - override bit 0 for specific bank switching instances
+	;bit 3 - ghost marowak battle if set
 ;;;;;;;;;;;;;;joenote - use these unused locations for debugging and parsing DV scores
 wUnusedD722:: 
 	ds 4

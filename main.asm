@@ -2099,8 +2099,18 @@ INCLUDE "engine/items/tm_prices.asm"
 
 SECTION "bank2D",ROMX,BANK[$2D]	;joenote - This is a known empty bank. Going to start moving stuff here
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;this is a bunch of custom functions and stuff, so leave it all together in the same bank
+INCLUDE "custom_functions/func_ai.asm"
+INCLUDE "custom_functions/func_battle.asm"
+INCLUDE "custom_functions/func_enc_gen.asm"
+INCLUDE "custom_functions/func_misc.asm"
+INCLUDE "custom_functions/func_monlists.asm"
+INCLUDE "custom_functions/func_overworld.asm"
+INCLUDE "custom_functions/func_shiny.asm"
 INCLUDE "engine/battle/stats_functions.asm"	
 INCLUDE "engine/battle/exp_bar_print.asm"	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 TradingAnimationGraphics:
 INCBIN "gfx/game_boy.2bpp"

@@ -17,8 +17,8 @@ CeladonMart3TextPointers:
 	dw CeladonMart3Text3
 	dw CeladonMart3Text4
 	dw CeladonMart3Text5
-	dw CeladonMart3Text6
-	dw CeladonMart3Text7
+	dw CeladonMart3ClerkText	;joenote - moving these two to position 6 and 7
+	dw CeladonMart3BlockerText
 	dw CeladonMart3Text8
 	dw CeladonMart3Text9
 	dw CeladonMart3Text10
@@ -29,10 +29,9 @@ CeladonMart3TextPointers:
 	dw CeladonMart3Text15
 	dw CeladonMart3Text16
 	dw CeladonMart3Text17
-	dw CeladonMart3ClerkText
-	dw CeladonMart3BlockerText
-	dw CeladonMart3Text6	;joenote - copying these down here due to a strange bug
+	dw CeladonMart3Text6	;joenote - these two moved to position 18 and 19
 	dw CeladonMart3Text7
+
 
 CeladonMart3Text1:
 	TX_ASM

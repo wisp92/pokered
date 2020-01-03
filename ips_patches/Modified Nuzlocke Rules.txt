@@ -1,0 +1,50 @@
+I personally do not suggest players attempt a nuzlocke run of Shin Pokemon Red/Blue. Trainers in this rom hack are not
+complete pushovers. They try to choose moves with some semblance of good play, and their pokemon tend to have slightly
+better stats compared to your pokemon at the same level. Knockouts are fairly common. Your nuzlocke run will likely end 
+in Mt Moon if playing by the normally-accepted ruleset. If you really want to do it though, I suggest playing your 
+nuzlocke run via the ruleset I have put together below.
+
+
+Core Rules:
+-----------
+1 -	Any pokemon that faints is considered dead, and it must be released or permenantly put in storage.
+	Modification A -	A pokemon is only considered dead if it dies from poison, a OHKO move, or a critical hit.
+	Modification B -	If you black out, the earliest pokemon in your party to faint that is still living is now dead.
+						
+	
+2 -	You may only catch the first pokemon encountered in each area even if it faints or flees
+	Static encounters with wild pokemon, as well as any shiny pokemon, may be freely caught and used. They do not count towards this rule.
+	Modification A -	Gift pokemon, prize pokemon, and in-game traded pokemon are exempt from this rule.
+	Modification B - 	The trade functionality of the cable club is prohibited. Trade Evolutions are now acquired via level-up.
+	Modification C - 	This rule is not in effect until the player first recieves the pokedex and obtains pokeballs.
+	Modification D - 	With regards only to the safari zone, this rule is reset upon paying the entrance fee. 
+						However, all areas of the safari zone are considered to be a single area for this rule.
+	Modification E -	Pokemon caught purely for using HM moves are exempt from this rule. They may never be used in battle.
+	
+3 -	You must nickname all pokemon you catch.
+
+4 - Your game is over if you have no pokemon left to use.
+	Modification A - 	A blackout is only a game over if you have no living pokemon in your party or PC storage.
+
+5 -	You cannot save and reload the game to avoid a negative outcome. 
+	Corollary A -	The Softlock Teleport is also prohibited.
+	Corollary B -	This rules does not apply when encountering a glitch or bug in the game that unfairly hampers your progress.
+
+
+Additional Rules:
+-----------------
+6 -	The battle style must be kept on "Set".
+
+7 - You are highly encouraged to stock up on healing items and supplies at pokemarts. You will need them.
+
+8 - You cannot run back to a pokecenter through caves, dungeons, gyms, or routes until you have trekked through them at least once.
+	You must push on ahead, use Dig/Teleport/Fly/Escape Rope/etc, or incur a blackout.
+
+9 -	Trainers can be rematched for friendly sparring after defeating them. Faintings during such rematches never count as deaths.
+
+10 - Any time you black out at the Indigo Plateau, the Elite 4 are considered to have confiscated your badges.
+	 You must return to Oak's lab and turn on Trainer Scaling via the bottom-right aide.
+	 All eight gym leaders must be re-matched and defeated to get your badges back (your choice on the order).
+	 These gym leader rematches are serious. Your pokemon are susceptable to death in spite of Rule 9.
+	 Trainer scaling can be turned off once all eight badges have been regained. 
+	 Only then are you allowed to re-challenge the Elite 4.

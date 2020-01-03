@@ -5,7 +5,7 @@ Route25Object:
 	warp 45, 3, 0, BILLS_HOUSE
 
 	db 1 ; signs
-	sign 43, 3, 11 ; Route25Text11
+	sign 43, 3, 12 ; Route25Text11	;joenote - reassigning to position 12
 
 	db 11 ; objects
 	object SPRITE_BUG_CATCHER, 14, 2, STAY, DOWN, 1, OPP_YOUNGSTER, 5
@@ -18,7 +18,7 @@ Route25Object:
 	object SPRITE_HIKER, 23, 9, STAY, UP, 8, OPP_HIKER, 3
 	object SPRITE_HIKER, 13, 7, STAY, RIGHT, 9, OPP_HIKER, 4
 	object SPRITE_BALL, 22, 2, STAY, NONE, 10, TM_19
-	object SPRITE_LASS, 55, 12, STAY, RIGHT, 12
+	object SPRITE_LASS, 55, 12, STAY, RIGHT, 11	;joenote - adding in a trainer
 
 	; warp-to
 	warp_to 45, 3, ROUTE_25_WIDTH ; BILLS_HOUSE
