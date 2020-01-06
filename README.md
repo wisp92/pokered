@@ -1,6 +1,7 @@
 # Shin Pokémon Red and Blue
 
 Version 1.1
+HOTFIXED 1/6/2020 - Lift Key now appears properly
 
 Download the IPS patch file of the version you want and apply it to its respective USA rom.  
 
