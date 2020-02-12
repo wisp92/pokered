@@ -1,7 +1,6 @@
 # Shin Pokémon Red and Blue
 
-Version 1.1
-HOTFIXED 1/6/2020 - Lift Key now appears properly
+Version 1.11
 
 Download the IPS patch file of the version you want and apply it to its respective USA rom.  
 
@@ -92,19 +91,19 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - Might be possible to use a save from vanilla USA red/blue with this rom hack (save in RED's house before transferring over)
 
 
-#Hack-Induced Bugfixes & Adjustments since last non-beta version:
+#Hack-Induced Bugfixes & Adjustments since last version:
 -----------
-- Fixed some issues with text in celadon floor 3, outside bill's house, and in vermillion city
-- Fixed some incorrect placements in the pkmn random table lists
-- Consolidated custom funcions into individual files for easy sorting
+- Fixed a major bug that caused every trainer pokemon to always have 54,458 stat exp for every stat
+  - Oopsies, my bad
+  - The game will be slightly easier now because trainer pokemon will:
+    - deal a little less damage
+	- be squishier in battle
+	- crit hit a little less often
 
 
-#New features & adjustments since last non-beta version:
+#New features & adjustments since last version:
 -----------
-- The ABCD teleport glitch has been fixed
-- The lift key in the rocket hideout drops during the end of battle text like in Yellow-version
-- A wild marowak is no longer assumed to be the ghost marowak
-- Pokedoll is disallowed during ghost marowak battle
+-
 
 
 #Bugfixes:
