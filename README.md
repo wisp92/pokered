@@ -1,6 +1,6 @@
 # Shin Pokémon Red and Blue
 
-Version 1.11
+Version 1.12
 
 Download the IPS patch file of the version you want and apply it to its respective USA rom.  
 
@@ -39,9 +39,10 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - Tons of bugs, glitches, and oversights fixed
 - Trainers are made more difficult not by increasing their team levels, but by doing the following:
   - Vastly improving the default ai routines
-  - Giving them access to stat experience
+  - Giving them access to stat experience (only in "Set" style)
   - Giving them above-average random DVs
   - Trainers of a smart-enough trainer class will make use of basic pkmn switching
+  - Badge boosts are not applied in trainer battles (only in "Set" style)
 - One of OAK's aides will toggle on/off scaling of trainer rosters to your level (evolving them if applicable)
 - All 151 pkmn are available in one version
   - Though difficult for a select few, each pkmn can be obtained multiple times
@@ -61,6 +62,7 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - Softlock Warp: instantly teleport back to your mom's house if you get stuck (see instructions in detailed changes below)
   - Running Shoes: Hold B to double your speed when walking, surfing, and biking
   - Press SELECT to use HMs based on proper context (must have the right badge and the move on one of your pkmn)
+  - Press Select while holding A to automatically get on/off your bike or use the best rod in your inventory 
   - Move relearner and deleter
   - Nearly all trainers can be rematched just by talking to them a 2nd time after their most recent defeat
   - Due to on-demand rematches, you could do a pseudo-"new game+" by boxing your pkmn and rematching everyone in order
@@ -93,17 +95,16 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 
 #Hack-Induced Bugfixes & Adjustments since last version:
 -----------
-- Fixed a major bug that caused every trainer pokemon to always have 54,458 stat exp for every stat
-  - Oopsies, my bad
-  - The game will be slightly easier now because trainer pokemon will:
-    - deal a little less damage
-	- be squishier in battle
-	- crit hit a little less often
+- The surfboard now works with smart hm use. It just has to be in your bag
+- Revamped instructions for compiling with new sprites
 
 
 #New features & adjustments since last version:
 -----------
--
+- Playing on "Shift" style sets trainer stat exp back to zero and re-enables badge boosts during trainer battles
+- Can't fish or surf in the bases of statues
+- Can't use surf/teleport/escape rope to escape from trainer encounters
+- Press Select while holding A to automatically get on/off your bike or use the best rod in your inventory
 
 
 #Bugfixes:
@@ -217,6 +218,8 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - The lift key in the rocket hideout drops during the end of battle text like in Yellow-version
   - An unused bit is now used to determine the ghost marowak battle
   - Pokedoll is disallowed during ghost marowak battle
+  - Can't use surf/teleport/escape rope to escape from trainer encounters
+  - Can't fish or surf in the bases of statues
 
 
 #TWEAKS:
@@ -338,7 +341,8 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - Enemy pkmn will evolve by level if applicable
   - Gym leaders and the E4 scale slightly higher than normal trainers
   - This is a good option to turn on for a pseudo-"New Game +" where you rematch all possible trainers in order
-
+- Playing on "Shift" style sets trainer stat exp back to zero and re-enables badge boosts during trainer battles
+  
 - Adjustments to learnsets and base stats
   - Pokemon have gained their TMs and Moves from yellow
   - Kadabra & Alakazam can access Kinesis via the move relearner
@@ -373,6 +377,7 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - press select when facing a shrub or grass tile to use cut
   - press select in a dark area to light it with flash
   - in all other instances, pressing select activates strength
+- Press Select while holding A to automatically get on/off your bike or use the best rod in your inventory
 - You can now check DVs or stat exp by holding down a button and entering the status screen
   - hold SELECT for stat exp
   - hold START for DVs

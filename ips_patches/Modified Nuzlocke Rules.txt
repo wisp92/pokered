@@ -28,7 +28,7 @@ Core Rules:
 
 5 -	You cannot save and reload the game to avoid a negative outcome. 
 	Corollary A -	The Softlock Teleport is also prohibited.
-	Corollary B -	This rules does not apply when encountering a glitch or bug in the game that unfairly hampers your progress.
+	Corollary B -	This rule does not apply when encountering a glitch or bug in the game that unfairly hampers your progress.
 
 
 Additional Rules:

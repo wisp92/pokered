@@ -67,6 +67,11 @@ IsRunning:
 
 ;joenote - allows for using HMs on the overworld with just a button press
 CheckForSmartHMuse:
+	;see if A button is being held to use the bike or rod
+	ld a, [hJoyHeld]
+	bit 0, a ; A button
+	jp nz, CheckForRodBike
+	
 	callba GetTileAndCoordsInFrontOfPlayer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;check for cut
@@ -114,7 +119,7 @@ CheckForSmartHMuse:
 	callba RedrawMapView
 	jp .return
 .nocut
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
 ;check for surfing
 	ld a, [wObtainedBadges]
 	bit 4, a ; does the player have the Soul Badge?
@@ -138,9 +143,9 @@ CheckForSmartHMuse:
 	call CheckForTilePairCollisions
 	jr c, .nosurf
 	;is the surfboard in the bag?
-	;ld b, SURFBOARD
-	;call IsItemInBag
-	;jr nz, .beginsurfing
+	ld b, SURFBOARD
+	call IsItemInBag
+	jr nz, .beginsurfing
 	;check if a party member has surf
 	ld c, SURF
 	call PartyMoveTest
@@ -317,3 +322,56 @@ LoadRedCyclingSpriteToDE:
 	ret
 
 
+;this function handles quick-use of fishing and biking by piggy-backing off the CheckForSmartHMuse function
+CheckForRodBike:
+	callba IsNextTileShoreOrWater	;unsets carry if player is facing water or shore
+	jr c, .nofishing
+	ld hl, TilePairCollisionsWater
+	call CheckForTilePairCollisions
+	jr c, .nofishing
+	;are rods in the bag?
+	ld b, SUPER_ROD
+	push bc
+	call IsItemInBag
+	pop bc
+	jr nz, .start
+	ld b, GOOD_ROD
+	push bc
+	call IsItemInBag
+	pop bc
+	jr nz, .start
+	ld b, OLD_ROD
+	push bc
+	call IsItemInBag
+	pop bc
+	jr nz, .start
+
+.nofishing
+	ld b, BICYCLE
+	push bc
+	call IsItemInBag
+	pop bc
+	jr z, .return
+
+.start
+	push bc
+	;initialize a text box without drawing anything special
+	ld a, 1
+	ld [wAutoTextBoxDrawingControl], a
+	callba DisplayTextIDInit
+	pop bc
+
+	;determine item to use
+	ld a, b
+	ld [wcf91], a	;load item to be used
+	ld [wd11e], a	;load item so its name can be grabbed
+	call GetItemName	;get the item name into de register
+	call CopyStringToCF4B ; copy name from de to wcf4b so it shows up in text
+	call UseItem	;use the item
+
+	;use $ff value loaded into hSpriteIndexOrTextID to make DisplayTextID display nothing and close any text
+	ld a, $FF
+	ld [hSpriteIndexOrTextID], a
+	call DisplayTextID
+.return
+	jpba OverworldLoop

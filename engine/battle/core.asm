@@ -7310,10 +7310,14 @@ ApplyBadgeStatBoosts:
 	cp LINK_STATE_BATTLING
 	jr z, .return ; return if link battle
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	ld a, [wOptions]	;load game options
+	bit 6, a			;check battle style
+	jr z, .dobadgeboost	;if shift style, always apply badge boosts
 ;joenote - only apply badge stat boosts in wild battles to keep parity with ai trainers
 	ld a, [wIsInBattle]
 	cp $1 ; is it a wild battle?
 	jr nz, .return ; return if not wild
+.dobadgeboost
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	ld a, [wObtainedBadges]
 	ld b, a
@@ -9507,6 +9511,9 @@ PlayBattleAnimationGotID:
 ;joenote - this function puts statexp per enemy pkmn level into de
 ;requires a, b, de, and wCurEnemyLVL
 CalcEnemyStatEXP:
+	ld a, [wOptions]	;load game options
+	bit 6, a			;check battle style
+	jr z, .loadzero		;load zero stat exp if on shift style
 	;This loads 648 stat exp per level. Note that 648 in hex is the two-byte $0288
 	ld a, $02
 	ld [H_MULTIPLICAND], a
@@ -9520,6 +9527,11 @@ CalcEnemyStatEXP:
 	ld a, [H_MULTIPLICAND]
 	ld d, a
 	ld a, [H_MULTIPLICAND+1]
+	ld e, a
+	ret
+.loadzero
+	xor a
+	ld d, a
 	ld e, a
 	ret
 	
