@@ -10,6 +10,8 @@ PICS_2 EQU $2F
 PICS_3 EQU $30
 PICS_4 EQU $31
 PICS_5 EQU $32
+PICS_6 EQU $33
+PICS_7 EQU $34
 
 INCLUDE "home.asm"
 
@@ -570,6 +572,16 @@ ShellderPicFront::    INCBIN "pic/xxxx/shellder.pic"
 ShellderPicBack::     INCBIN "pic/yyyy/shellderb.pic"
 TentacoolPicFront::   INCBIN "pic/xxxx/tentacool.pic"
 TentacoolPicBack::    INCBIN "pic/yyyy/tentacoolb.pic"
+
+
+SECTION "Battle (bank 9)", ROMX, BANK[$9]
+INCLUDE "engine/battle/print_type.asm"
+INCLUDE "engine/battle/save_trainer_name.asm"
+INCLUDE "engine/battle/moveEffects/focus_energy_effect.asm"
+
+
+SECTION "Pics 2", ROMX, BANK[PICS_2]
+
 GastlyPicFront::      INCBIN "pic/xxxx/gastly.pic"
 GastlyPicBack::       INCBIN "pic/yyyy/gastlyb.pic"
 ScytherPicFront::     INCBIN "pic/xxxx/scyther.pic"
@@ -582,16 +594,6 @@ PinsirPicFront::      INCBIN "pic/xxxx/pinsir.pic"
 PinsirPicBack::       INCBIN "pic/yyyy/pinsirb.pic"
 TangelaPicFront::     INCBIN "pic/xxxx/tangela.pic"
 TangelaPicBack::      INCBIN "pic/yyyy/tangelab.pic"
-
-
-SECTION "Battle (bank 9)", ROMX, BANK[$9]
-INCLUDE "engine/battle/print_type.asm"
-INCLUDE "engine/battle/save_trainer_name.asm"
-INCLUDE "engine/battle/moveEffects/focus_energy_effect.asm"
-
-
-SECTION "Pics 2", ROMX, BANK[PICS_2]
-
 GrowlithePicFront::   INCBIN "pic/xxxx/growlithe.pic"
 GrowlithePicBack::    INCBIN "pic/yyyy/growlitheb.pic"
 OnixPicFront::        INCBIN "pic/xxxx/onix.pic"
@@ -626,6 +628,14 @@ DrowzeePicFront::     INCBIN "pic/xxxx/drowzee.pic"
 DrowzeePicBack::      INCBIN "pic/yyyy/drowzeeb.pic"
 GolemPicFront::       INCBIN "pic/xxxx/golem.pic"
 GolemPicBack::        INCBIN "pic/yyyy/golemb.pic"
+
+
+SECTION "Battle (bank A)", ROMX, BANK[$A]
+INCLUDE "engine/battle/moveEffects/leech_seed_effect.asm"
+
+
+SECTION "Pics 3", ROMX, BANK[PICS_3]
+
 MagmarPicFront::      INCBIN "pic/xxxx/magmar.pic"
 MagmarPicBack::       INCBIN "pic/yyyy/magmarb.pic"
 ElectabuzzPicFront::  INCBIN "pic/xxxx/electabuzz.pic"
@@ -656,14 +666,6 @@ JynxPicFront::        INCBIN "pic/xxxx/jynx.pic"
 JynxPicBack::         INCBIN "pic/yyyy/jynxb.pic"
 MoltresPicFront::     INCBIN "pic/xxxx/moltres.pic"
 MoltresPicBack::      INCBIN "pic/yyyy/moltresb.pic"
-
-
-SECTION "Battle (bank A)", ROMX, BANK[$A]
-INCLUDE "engine/battle/moveEffects/leech_seed_effect.asm"
-
-
-SECTION "Pics 3", ROMX, BANK[PICS_3]
-
 ArticunoPicFront::    INCBIN "pic/xxxx/articuno.pic"
 ArticunoPicBack::     INCBIN "pic/yyyy/articunob.pic"
 ZapdosPicFront::      INCBIN "pic/xxxx/zapdos.pic"
@@ -682,6 +684,26 @@ PikachuPicFront::     INCBIN "pic/xxxx/pikachu.pic"
 PikachuPicBack::      INCBIN "pic/yyyy/pikachub.pic"
 RaichuPicFront::      INCBIN "pic/xxxx/raichu.pic"
 RaichuPicBack::       INCBIN "pic/yyyy/raichub.pic"
+
+
+SECTION "Battle (bank B)", ROMX, BANK[$B]
+
+INCLUDE "engine/battle/display_effectiveness.asm"
+
+TrainerInfoTextBoxTileGraphics:  INCBIN "gfx/trainer_info.2bpp"
+TrainerInfoTextBoxTileGraphicsEnd:
+BlankLeaderNames:                INCBIN "gfx/blank_leader_names.2bpp"
+CircleTile:                      INCBIN "gfx/circle_tile.2bpp"
+BadgeNumbersTileGraphics:        INCBIN "gfx/badge_numbers.2bpp"
+
+INCLUDE "engine/items/tmhm.asm"
+INCLUDE "engine/battle/scale_sprites.asm"
+INCLUDE "engine/battle/moveEffects/pay_day_effect.asm"
+INCLUDE "engine/game_corner_slots2.asm"
+
+
+SECTION "Pics 4", ROMX, BANK[PICS_4]
+
 DratiniPicFront::     INCBIN "pic/xxxx/dratini.pic"
 DratiniPicBack::      INCBIN "pic/yyyy/dratinib.pic"
 DragonairPicFront::   INCBIN "pic/xxxx/dragonair.pic"
@@ -732,32 +754,19 @@ KakunaPicFront::      INCBIN "pic/xxxx/kakuna.pic"
 KakunaPicBack::       INCBIN "pic/yyyy/kakunab.pic"
 BeedrillPicFront::    INCBIN "pic/xxxx/beedrill.pic"
 BeedrillPicBack::     INCBIN "pic/yyyy/beedrillb.pic"
-
-FossilKabutopsPic::   INCBIN "pic/other/fossilkabutops.pic"
-
-
-SECTION "Battle (bank B)", ROMX, BANK[$B]
-
-INCLUDE "engine/battle/display_effectiveness.asm"
-
-TrainerInfoTextBoxTileGraphics:  INCBIN "gfx/trainer_info.2bpp"
-TrainerInfoTextBoxTileGraphicsEnd:
-BlankLeaderNames:                INCBIN "gfx/blank_leader_names.2bpp"
-CircleTile:                      INCBIN "gfx/circle_tile.2bpp"
-BadgeNumbersTileGraphics:        INCBIN "gfx/badge_numbers.2bpp"
-
-INCLUDE "engine/items/tmhm.asm"
-INCLUDE "engine/battle/scale_sprites.asm"
-INCLUDE "engine/battle/moveEffects/pay_day_effect.asm"
-INCLUDE "engine/game_corner_slots2.asm"
-
-
-SECTION "Pics 4", ROMX, BANK[PICS_4]
-
 DodrioPicFront::       INCBIN "pic/xxxx/dodrio.pic"
 DodrioPicBack::        INCBIN "pic/yyyy/dodriob.pic"
 PrimeapePicFront::     INCBIN "pic/xxxx/primeape.pic"
 PrimeapePicBack::      INCBIN "pic/yyyy/primeapeb.pic"
+
+
+SECTION "Battle (bank C)", ROMX, BANK[$C]
+INCLUDE "engine/battle/moveEffects/mist_effect.asm"
+INCLUDE "engine/battle/moveEffects/one_hit_ko_effect.asm"
+
+
+SECTION "Pics 5", ROMX, BANK[PICS_5]
+
 DugtrioPicFront::      INCBIN "pic/xxxx/dugtrio.pic"
 DugtrioPicBack::       INCBIN "pic/yyyy/dugtriob.pic"
 VenomothPicFront::     INCBIN "pic/xxxx/venomoth.pic"
@@ -804,6 +813,8 @@ HaunterPicFront::      INCBIN "pic/xxxx/haunter.pic"
 HaunterPicBack::       INCBIN "pic/yyyy/haunterb.pic"
 AbraPicFront::         INCBIN "pic/xxxx/abra.pic"
 AbraPicBack::          INCBIN "pic/yyyy/abrab.pic"
+
+SECTION "Pics 6", ROMX, BANK[PICS_6]
 AlakazamPicFront::     INCBIN "pic/xxxx/alakazam.pic"
 AlakazamPicBack::      INCBIN "pic/yyyy/alakazamb.pic"
 PidgeottoPicFront::    INCBIN "pic/xxxx/pidgeotto.pic"
@@ -812,16 +823,6 @@ PidgeotPicFront::      INCBIN "pic/xxxx/pidgeot.pic"
 PidgeotPicBack::       INCBIN "pic/yyyy/pidgeotb.pic"
 StarmiePicFront::      INCBIN "pic/xxxx/starmie.pic"
 StarmiePicBack::       INCBIN "pic/yyyy/starmieb.pic"
-
-
-
-SECTION "Battle (bank C)", ROMX, BANK[$C]
-INCLUDE "engine/battle/moveEffects/mist_effect.asm"
-INCLUDE "engine/battle/moveEffects/one_hit_ko_effect.asm"
-
-
-SECTION "Pics 5", ROMX, BANK[PICS_5]
-
 BulbasaurPicFront::    INCBIN "pic/xxxx/bulbasaur.pic"
 BulbasaurPicBack::     INCBIN "pic/yyyy/bulbasaurb.pic"
 VenusaurPicFront::     INCBIN "pic/xxxx/venusaur.pic"
@@ -860,8 +861,11 @@ CharmeleonPicFront::   INCBIN "pic/xxxx/charmeleon.pic"
 CharmeleonPicBack::    INCBIN "pic/yyyy/charmeleonb.pic"
 WartortlePicFront::    INCBIN "pic/xxxx/wartortle.pic"
 WartortlePicBack::     INCBIN "pic/yyyy/wartortleb.pic"
+
+SECTION "Pics 7", ROMX, BANK[PICS_7]
 CharizardPicFront::    INCBIN "pic/xxxx/charizard.pic"
 CharizardPicBack::     INCBIN "pic/yyyy/charizardb.pic"
+FossilKabutopsPic::   INCBIN "pic/other/fossilkabutops.pic"
 FossilAerodactylPic::  INCBIN "pic/other/fossilaerodactyl.pic"
 GhostPic::             INCBIN "pic/other/ghost.pic"
 OddishPicFront::       INCBIN "pic/xxxx/oddish.pic"
@@ -876,10 +880,8 @@ WeepinbellPicFront::   INCBIN "pic/xxxx/weepinbell.pic"
 WeepinbellPicBack::    INCBIN "pic/yyyy/weepinbellb.pic"
 VictreebelPicFront::   INCBIN "pic/xxxx/victreebel.pic"
 VictreebelPicBack::    INCBIN "pic/yyyy/victreebelb.pic"
-
 RedPicBack::           INCBIN "pic/trainer/redb.pic"
 OldManPic::            INCBIN "pic/trainer/oldman.pic"
-
 
 SECTION "Battle (bank D)", ROMX, BANK[$D]
 
