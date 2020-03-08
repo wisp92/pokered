@@ -7,9 +7,12 @@ or even the spaceworld gold beta sprites in the pic/swmon folder.
 Maybe you also want to change the back sprites to something else like the spaceworld back sprites in the pic/swmonback folder.
 
 Since these sprites take up more space than the default sprites, some shuffling of data in the rom banks is in order.
-Included is a modified main.asm, home.asm, and pokered.link that does just this.
+Included is a modified main.asm and pokered.link that does just this.
 You can run a comparison yourself between these files and the originals to see what has changed and why.
 Simply rename and replace the files (overwriting the originals).
+
+
+You must now go into home.asm and paste over the UncompressMonSprite function with the following function.
 
 UncompressMonSprite::
 	ld bc, wMonHeader
@@ -61,6 +64,7 @@ UncompressMonSprite::
 .GotBank
 	jp UncompressSpriteData
 
+	
 In the new main.asm you must use replace-all to change every instance of xxxx to your desired back sprite folder in /pic/.
 For example, replace-all xxxx with monback to use the default back sprites.
 
