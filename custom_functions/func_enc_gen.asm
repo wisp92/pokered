@@ -105,7 +105,7 @@ GetRandRosterLoop:
 	push hl
 	call AddPartyMon
 	call Random
-	and $03
+	and $01
 	ld b, a
 	ld a, [wCurEnemyLVL]
 	add b

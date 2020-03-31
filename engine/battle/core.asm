@@ -6712,12 +6712,15 @@ LoadEnemyMonData:
 	jr nz, .storeDVs
 	ld a, [wIsInBattle]
 	cp $2 ; is it a trainer battle?
-; fixed DVs for trainer mon
-;	ld a, $98
-;	ld b, $88
-;	jr z, .storeDVs
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;joenote - going to randomly determine trainer DVs (values of 8 to 15)
 	jr nz, .nottrainer	;if not a trainer then skip this part
+;joenote - load default DVs if using "shift" battle style
+	ld a, [wOptions]	;load game options
+	bit 6, a			;check battle style
+; fixed DVs for trainer mon
+	ld a, $98
+	ld b, $88
+	jr z, .storeDVs	;joenote - store the fixed DVs if shift battle style
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;joenote - going to randomly determine trainer DVs (values of 8 to 15)
 ;load whatever default DVs are already there for the pkmn
 	ld hl, wEnemyMon1DVs
 	ld a, [wWhichPokemon]

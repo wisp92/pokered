@@ -1,6 +1,7 @@
 # Shin Pokémon Red and Blue
 
-Version 1.12
+Version 1.13 beta
+Note: If you run into a problem with the beta patch, you SAV file is compatible with v1.12. 
 
 Download the IPS patch file of the version you want and apply it to its respective USA rom.  
 
@@ -40,7 +41,7 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - Trainers are made more difficult not by increasing their team levels, but by doing the following:
   - Vastly improving the default ai routines
   - Giving them access to stat experience (only in "Set" style)
-  - Giving them above-average random DVs
+  - Giving them above-average random DVs (only in "Set" style)
   - Trainers of a smart-enough trainer class will make use of basic pkmn switching
   - Badge boosts are not applied in trainer battles (only in "Set" style)
 - One of OAK's aides will toggle on/off scaling of trainer rosters to your level (evolving them if applicable)
@@ -52,6 +53,7 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - DVs are checked to see if a pokemon would be shiny in the gen 2 games
   - If a pokemon has shiny DVs, then it will play the Reflect animation when entering battle
   - If playing on a super gameboy, shiny pkmn will have a palette swap on the status screen and also change color in battle
+  - If playing on super gameboy, hold select when loading a pokedex entry to see that pokemon's shiny palette
 - Minor quality-of-life improvements during battle
   - When a when a box is filled (either via catching or depositing a pokemon), notification text is displayed
   - Exp bar in battle
@@ -95,16 +97,18 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 
 #Hack-Induced Bugfixes & Adjustments since last version:
 -----------
-- The surfboard now works with smart hm use. It just has to be in your bag
-- Revamped instructions for compiling with new sprites
+- Switched around the shiny palettes in how they correspond to the usual pokemon palettes
+- Random enemy team generator is more forgiving with level scaling for regular trainers: increases 0-1 levels per mon instead of 0-3
+- Route 12 fisher given some magikarp to match his trainer text
+- TMs and HMs now use a separate string list to determine their item names, so function GetMachineName has been removed
+- Tm & HM name list takes the #3 list table spot and replaces the Unused Names list
 
 
 #New features & adjustments since last version:
 -----------
-- Playing on "Shift" style sets trainer stat exp back to zero and re-enables badge boosts during trainer battles
-- Can't fish or surf in the bases of statues
-- Can't use surf/teleport/escape rope to escape from trainer encounters
-- Press Select while holding A to automatically get on/off your bike or use the best rod in your inventory
+- If playing on super gameboy, hold select when loading a pokedex entry to see that pokemon's shiny palette
+- DVs of trainer pokemon are set back to vanilla default levels if using the "shift" battle style
+- TMs and HMs now have their attacks (albeit abbreviated) appended to the item names
 
 
 #Bugfixes:
@@ -245,6 +249,7 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - Fixed capitalization in safari zone entrance
   - PC has a text prompt to tell you if its full after depositing
   - Exp.all now prints one message when splitting exp instead of for each party member
+  - TMs and HMs now have their attacks (albeit abbreviated) appended to the item names
 
 - Adjustments to moves  
   - Stat-down moves no longer have a 25% miss chance in AI matches
@@ -341,7 +346,7 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - Enemy pkmn will evolve by level if applicable
   - Gym leaders and the E4 scale slightly higher than normal trainers
   - This is a good option to turn on for a pseudo-"New Game +" where you rematch all possible trainers in order
-- Playing on "Shift" style sets trainer stat exp back to zero and re-enables badge boosts during trainer battles
+- Playing on "Shift" style sets trainer stat exp back to zero, DVs back to fixed average, and re-enables badge boosts during trainer battles
   
 - Adjustments to learnsets and base stats
   - Pokemon have gained their TMs and Moves from yellow
@@ -434,6 +439,7 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - Pkmn with levels > 100 have 255 base exp yield
 - If a pkmn has DVs that would make it shiny in Gen 2, the Reflect animation plays when it enters battle
 - If playing on a super gameboy, shiny pkmn will have a palette swap on the status screen and also change color in battle
+- If playing on super gameboy, hold select when loading a pokedex entry to see that pokemon's shiny palette
 - If a level 100 chansey is first in your roster:
   - Shiny wild random encounters are much more common (1 in 256)
   - Repel effects will not block shiny encounters

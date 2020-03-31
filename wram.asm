@@ -1476,6 +1476,7 @@ wListPointer:: ; cf8b
 wUnusedCF8D:: ; cf8d
 ; 2 bytes
 ; used to store pointers, but never read
+;joenote - used as a temp location for sorting through name data
 	ds 2
 
 wItemPrices:: ; cf8f

@@ -133,6 +133,14 @@ SetPal_Pokedex:
 	call DeterminePaletteIDOutOfBattle
 	ld hl, wPalPacket + 3
 	ld [hl], a
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;joenote - see if SELECT button is being held to load the shiny PalPacket
+	ld a, [hJoyHeld]
+	bit 2, a ; Select button
+	jp z, .SelectNotHeld
+	callba ShinyStatusScreen
+.SelectNotHeld
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	ld hl, wPalPacket
 	ld de, BlkPacket_Pokedex
 	ret
