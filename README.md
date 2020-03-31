@@ -1,7 +1,7 @@
 # Shin Pokémon Red and Blue
 
 Version 1.13 beta
-Note: If you run into a problem with the beta patch, you SAV file is compatible with v1.12. 
+Note: If you run into a problem with the beta patch, your SAV file is compatible with v1.12. 
 
 Download the IPS patch file of the version you want and apply it to its respective USA rom.  
 

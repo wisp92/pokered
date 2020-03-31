@@ -89,6 +89,8 @@ INCLUDE "engine/remove_pokemon.asm"
 
 INCLUDE "engine/display_pokedex.asm"
 
+INCLUDE "text/tmhm_names.asm"	;joenote - adding name list for tm and hm items
+
 SECTION "bank3",ROMX,BANK[$3]
 
 INCLUDE "engine/joypad.asm"
