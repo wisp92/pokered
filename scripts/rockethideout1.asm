@@ -1,4 +1,6 @@
 RocketHideout1Script:
+	ld a, 0
+	ld [wCeladonGameCornerCurScript], a	;something is writing $18 to the game corner script number and I don't know what
 	call RocketHideout1Script_44be0
 	call EnableAutoTextBoxDrawing
 	ld hl, RocketHideout1TrainerHeader0

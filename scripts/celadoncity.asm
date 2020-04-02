@@ -2,6 +2,8 @@ CeladonCityScript:
 	call EnableAutoTextBoxDrawing
 	ResetEvents EVENT_1B8, EVENT_1BF
 	ResetEvent EVENT_67F
+	ld a, 0
+	ld [wCeladonGameCornerCurScript], a	;something is writing $18 to the game corner script number and I don't know what
 	ret
 
 CeladonCityTextPointers:

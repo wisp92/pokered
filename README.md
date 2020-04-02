@@ -102,6 +102,7 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - Route 12 fisher given some magikarp to match his trainer text
 - TMs and HMs now use a separate string list to determine their item names, so function GetMachineName has been removed
 - Tm & HM name list takes the #3 list table spot and replaces the Unused Names list
+- Band-aide fixed the game corner crashing upon entry
 
 
 #New features & adjustments since last version:
