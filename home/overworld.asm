@@ -104,7 +104,8 @@ OverworldLoopLessDelay::
 	ld a, [hJoyPressed]
 	bit 2, a	;is Select being pressed?
 	jr z, .notselect
-	jpba CheckForSmartHMuse	;this function jumps back to OverworldLoop on completion
+	callba CheckForSmartHMuse	;this function jumps back to OverworldLoop on completion
+	jp OverworldLoop
 .notselect
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	call CheckForHiddenObjectOrBookshelfOrCardKeyDoor

@@ -633,6 +633,16 @@ GetPartyMonName::
 	push hl
 	push bc
 	call SkipFixedLengthTextEntries ; add NAME_LENGTH to hl, a times
+
+;joenote - if the names are glitched, let's at least make them stable
+	push hl
+	push de
+	ld d, h
+	ld e, l
+	callba FixNickNames
+	pop de
+	pop hl
+	
 	ld de, wcd6d
 	push de
 	ld bc, NAME_LENGTH

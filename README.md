@@ -1,7 +1,8 @@
 # Shin Pokémon Red and Blue
 
 Version 1.13 beta
-Note: If you run into a problem with the beta patch, your SAV file is compatible with v1.12. 
+Note: V1.11 and 1.12 have a memory leak with the Select button.
+		Please update either of these to this version to fix the problem and prevent data corruption.
 
 Download the IPS patch file of the version you want and apply it to its respective USA rom.  
 
@@ -97,12 +98,16 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 
 #Hack-Induced Bugfixes & Adjustments since last version:
 -----------
+- Found a fixed a major memory leak that would occur every time SELECT is pressed on the overworld
+	- Fixing the leak also stops the issue with the exp bar acting really strange after long play sessions
+	- Band-aide fixed the game corner crashing upon entry (caused by memory leak)
+	- Implemented a function that repairs glitched pokemon names to a stable nickname format (fixes glitch-name boxed mons caused by memory leak)
+- Can no longer use quick-keys to get on/off the bike if on cycling road
 - Switched around the shiny palettes in how they correspond to the usual pokemon palettes
 - Random enemy team generator is more forgiving with level scaling for regular trainers: increases 0-1 levels per mon instead of 0-3
 - Route 12 fisher given some magikarp to match his trainer text
 - TMs and HMs now use a separate string list to determine their item names, so function GetMachineName has been removed
 - Tm & HM name list takes the #3 list table spot and replaces the Unused Names list
-- Band-aide fixed the game corner crashing upon entry
 
 
 #New features & adjustments since last version:
@@ -528,7 +533,8 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - Crystal_
   - ChickasaurusGL
   - v0id19
-- The following Redditors for their help in pointing out and diagnosing bugs 
+- The following folks for their help in pointing out and diagnosing bugs 
   - kadetPirx
   - JOBOalthor1992
   - krazsen
+  - kmalove

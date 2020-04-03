@@ -215,7 +215,7 @@ CheckForSmartHMuse:
 .nostrength
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 .return
-	jpba OverworldLoop
+	ret
 	
 
 ;Check if any pokemon in the party has a certain move
@@ -347,6 +347,11 @@ CheckForRodBike:
 	jr nz, .start
 
 .nofishing
+	;do nothing if forced to ride bike
+	ld a, [wd732]
+	bit 5, a
+	ret nz
+	;else check if bike is in bag
 	ld b, BICYCLE
 	push bc
 	call IsItemInBag
@@ -374,4 +379,4 @@ CheckForRodBike:
 	ld [hSpriteIndexOrTextID], a
 	call DisplayTextID
 .return
-	jpba OverworldLoop
+	ret

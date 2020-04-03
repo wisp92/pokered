@@ -62,4 +62,55 @@ LuckySlotDetect:
 	ret
 	
 
+;this function makes glitched pokemon names stable by restoring them back to the normal nickname format
+;this is called from GetPartyMonName
+FixNickNames:
+	ld c, 1
+	ld h, d
+	ld l, e
+	ld a, [hl]
+	cp $50
+	jr z, .notvalid
+.loop
+	ld a, c
+	cp NAME_LENGTH
+	jr z, .finish
+	ld a, [hl]
 	
+	cp $50
+	jr z, .eol
+	
+	cp $7F
+	jr c, .notvalid
+	
+	cp $F6
+	jr nc, .notvalid
+	
+	cp $E1
+	jr nc, .valid
+	
+	cp $C0
+	jr c, .valid
+
+.notvalid
+	ld [hl], $F1
+.valid
+	inc hl
+	inc c
+	jr .loop
+
+.finish
+	ld a, [hl]
+	cp $50
+	ret z
+	ld [hl], $50
+	ret
+	
+.eol
+	inc c
+	inc hl
+	ld a, c
+	cp NAME_LENGTH
+	jr z, .finish
+	ld [hl], $50
+	jr .eol
