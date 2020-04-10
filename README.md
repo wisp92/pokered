@@ -1,6 +1,6 @@
 # Shin Pokémon Red and Blue
 
-Version 1.13 beta
+Version 1.13 
 Note: V1.11 and 1.12 have a memory leak with the Select button.
 		Please update either of these to this version to fix the problem and prevent data corruption.
 
@@ -119,6 +119,8 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - DVs of trainer pokemon are set back to vanilla default levels if using the "shift" battle style
 - TMs and HMs now have their attacks (albeit abbreviated) appended to the item names
 - The game corner chief will buy pokemon from you post-e4
+- The bookcase in the ship tileset has been replaced with an ship's navigational pc
+- A ship's PC has been added to the ss. anne's kitchen and made functional
 
 
 #Bugfixes:

@@ -69,7 +69,7 @@ _SSAnne6Text_61816::
 	done
 
 _SSAnne6Text_GymGuy::
-	text "Yo! Champ in"
+	text "Yo! Champ in the"
 	line "making!"
 
 	para "Do I remind you of"
@@ -78,8 +78,13 @@ _SSAnne6Text_GymGuy::
 	cont "relatives."
 
 	para "No advice from me"
-	line "though. I'm on a"
+	line "though. I'm on my"
 	cont "vacation."
+	
+	para "There's a ship"
+	line "Navi-PC in the"
+	cont "corner if you"
+	cont "need it."
 	done
 	
 _SSAnne6Text_GymGuy2::
@@ -92,21 +97,26 @@ _SSAnne6Text_GymGuy2::
 	cont "between everyone."
 
 	para "If you can beat 7"
-	line "trainers you"
-	cont "win a nice prize!"
+	line "trainers you win"
+	cont "a nice prize!"
 	
 	para "But everyone has"
 	line "to use exactly 3"
 	cont "#MON."
 	
 	para "Your #MON get"
-	line "healed between"
+	line "healed before"
 	cont "each round."
 	
 	para "Be careful!"
 	line "These are strong"
 	cont "folks from all"
 	cont "over the place."
+	
+	para "There's a ship"
+	line "Navi-PC in the"
+	cont "corner if you"
+	cont "need it."
 	
 	para "You up for it?"
 	done

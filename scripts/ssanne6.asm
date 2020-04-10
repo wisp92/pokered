@@ -113,6 +113,8 @@ SSAnne6Text8: ;joenote - gym guy for post-game tournament
 	ld a, [wPartyCount]
 	cp 3
 	jr nz, .partynot3
+	
+	predef HealParty
 
 .startbattle
 	;if everything checks out, begin initiating battle with a random trainer

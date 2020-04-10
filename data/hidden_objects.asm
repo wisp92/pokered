@@ -566,6 +566,8 @@ SSAnne6HiddenObjects:
 	dbw BANK(PrintTrashText), PrintTrashText
 	db $09,$0d,GREAT_BALL
 	dbw BANK(HiddenItems),HiddenItems
+	db $01,$0d,$04	;joenote - adding ship's PC
+	dbw BANK(OpenPokemonCenterPC), OpenPokemonCenterPC
 	db $FF
 SSAnne10HiddenObjects:
 	db $01,$03,HYPER_POTION
