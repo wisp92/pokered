@@ -20,3 +20,29 @@ _CeladonHouseText3::
 	para "There's no secret"
 	line "switch behind it!"
 	done
+
+_CeladonHouseTextChiefIntro::	;joenote - adding text for selling pokemon
+	text "Hehehe! The slots"
+	line "just reel in the"
+	cont "dough, big time!"
+	
+	para "But with Boss gone"
+	line "I'll run out of"
+	cont "prize #MON."
+	
+	para "Hey kid! Nice"
+	line "@"
+	TX_RAM wcd6d
+	db $0
+	cont "ya got there."
+
+	para "I'll give you"
+	line "¥@"
+	TX_BCD hItemPrice, 3 | LEADING_ZEROES | LEFT_ALIGN
+	text " for it!"
+	done
+	
+_CeladonHouseTextChiefDone::
+	text "Later kid."
+	done
+	

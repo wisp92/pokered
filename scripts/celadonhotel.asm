@@ -80,7 +80,7 @@ CeladonHotelCoinGuy:
 HastTooManyCoins:
 	ld a, $94
 	ld [hCoins], a
-	ld a, $23
+	ld a, $24
 	ld [hCoins + 1], a
 	jp HasEnoughCoins
 

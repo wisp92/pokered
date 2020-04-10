@@ -118,6 +118,7 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - If playing on super gameboy, hold select when loading a pokedex entry to see that pokemon's shiny palette
 - DVs of trainer pokemon are set back to vanilla default levels if using the "shift" battle style
 - TMs and HMs now have their attacks (albeit abbreviated) appended to the item names
+- The game corner chief will buy pokemon from you post-e4
 
 
 #Bugfixes:
@@ -451,6 +452,10 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - You must have an open item slot to claim your prize
   - Any trainer can appear with any three pokemon
   - No breaks allowed in-between battles
+- Vendor added to Celadon Dept. Store 3F
+  - Sells moon stones, amber, fossils, exp all, master balls, and rare candy
+  - Only opens up after beating elite 4
+- The game corner chief will buy pokemon from the player post-e4
 - There is a new NPC in the west-east underground path that generates random battles after beating the elite 4
 - New item M.GENE: re-randomizes a pkmn's DVs to values of 9,8,8,8 or more.
   - Win 5 matches in a row against the random team NPC to get M.GENE items (leaving the area resets the win streak)
@@ -526,9 +531,6 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 
 
 #Changes to pokemart inventories:
-- Vendor added to Celadon Dept. Store 3F
-  - Sells moon stones, amber, fossils, exp all, master balls, and rare candy
-  - Only opens up after beating elite 4
 - TMs of all kinds at all stores. All TMs are now re-purchaseable at various stages of the game.
 - pewter city has ethers
 - lavender town has max ethers

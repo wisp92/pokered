@@ -22,7 +22,9 @@ Mon1BCDScore:
 	cp 1
 	jr nz, .default
 	ld a, [wPartyMon1CatchRate]
-	sub $FF
+	ld b, a
+	ld a, $FF
+	sub b
 	jr .next
 
 .default

@@ -7,7 +7,77 @@ CeladonHouseTextPointers:
 	dw CeladonHouseText2
 	dw CeladonHouseText3
 
-CeladonHouseText1:
+CeladonHouseText1:	;joenote - adding offer to buy pokemon
+	TX_ASM
+	ld hl, CeladonHouseText1B
+	CheckEvent EVENT_908
+	jp z, .end
+	
+	ld a, [wPartyCount]
+	dec a
+	jp z, .end
+	
+	xor a
+	ld [hItemPrice], a
+	ld [hItemPrice + 1], a
+	ld [hItemPrice + 2], a
+	ld [wcd6d], a
+	callba Mon1BCDScore
+	ld de, hItemPrice + 2
+	ld hl, wcd6d + 1
+	ld c, $3
+	predef AddBCDPredef	;add value in hl location to value in de location
+	
+	ld a, 1
+	ld [wcd6d], a
+	callba Mon1BCDScore
+	ld de, hItemPrice + 2
+	ld hl, wcd6d + 1
+	ld c, $3
+	predef AddBCDPredef	;add value in hl location to value in de location
+	
+	ld a, 2
+	ld [wcd6d], a
+	callba Mon1BCDScore
+	ld de, hItemPrice + 2
+	ld hl, wcd6d + 1
+	ld c, $3
+	predef AddBCDPredef	;add value in hl location to value in de location
+	
+	ld a, [wPartyMon1Species]
+	ld [wd11e], a
+	call GetMonName
+	
+	ld hl, CeladonHouseTextChiefIntro
+	call PrintText
+	
+	call NoYesChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr z, .nodeal
+	
+	
+	ld hl, hItemPrice + 2
+	ld de, wPlayerMoney + 2
+	ld c, $3
+	predef AddBCDPredef	;add value in hl location to value in de location
+	
+	xor a
+	ld [wWhichPokemon], a
+	ld [wRemoveMonFromBox], a
+	call RemovePokemon
+	
+	ld a, SFX_GET_ITEM_1
+	call PlaySound
+	
+.nodeal	
+	ld hl, CeladonHouseTextChiefDone
+.end
+	call PrintText
+	jp TextScriptEnd
+
+
+CeladonHouseText1B:
 	TX_FAR _CeladonHouseText1
 	db "@"
 
@@ -17,4 +87,12 @@ CeladonHouseText2:
 
 CeladonHouseText3:
 	TX_FAR _CeladonHouseText3
+	db "@"
+	
+CeladonHouseTextChiefIntro:
+	TX_FAR _CeladonHouseTextChiefIntro
+	db "@"
+	
+CeladonHouseTextChiefDone:
+	TX_FAR _CeladonHouseTextChiefDone
 	db "@"
