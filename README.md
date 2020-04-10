@@ -108,6 +108,9 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - Route 12 fisher given some magikarp to match his trainer text
 - TMs and HMs now use a separate string list to determine their item names, so function GetMachineName has been removed
 - Tm & HM name list takes the #3 list table spot and replaces the Unused Names list
+- Pay Day switch to 5x multiplier and fixed an overflow glitch
+- Hotel Coin Guy now does BCD conversion correctly and his payout has been increased
+- The function that handles BCD coin score can now do multiple selectable stats
 
 
 #New features & adjustments since last version:
@@ -265,8 +268,7 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 	- Each time a trapping move is used and hits, user's speed reduced 25% until recalculated through other mechanics
     - A pkmn plays its cry to signal the last turn of the trapping move
   - Ghost moves (i.e. just Lick) do 2x against psychic as was always intended
-  - Pay Day upped to 8x multiplier instead of 2x
-    - It's 5x in later generations, but amulet coin doesn't exist in gen 1. 8x is a compromise.
+  - Pay Day upped to 5x multiplier of later generations
   - Changes to Bide
     - damage accumulation is done after taking a damaging hit instead of during turn execution (less room for glitches)
 	- side effect: bide is buffed because multi-hit moves now add damage to bide for each of the 2 to 5 hits
@@ -282,8 +284,6 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - The effect of X Accuracy is no longer applied to one-hit K.O. moves (it originally made them auto-hit)
   - The limiter on vitamins is raised to a max of 62720 stat exp after the elite 4 have been beaten
   - Pkmn added to the player's party (either as a gift or in-game trade) have at the least DVs of 9,8,8,8
-  - New item M.GENE: re-randomizes a pkmn's DVs to values of 9,8,8,8 or more.
-  - Win 5 matches in a row against the random team NPC to get M.GENE items (leaving the area resets the win streak)
   - Upped the power of safari balls
   - Escaping in the safari zone is now based on level instead of speed
   
@@ -347,12 +347,6 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - Originally these get reset every time the opponent send out a pkmn (even swithing)
   - Was never really noticed since most trainers never switch nor would have the opportunity
   - Changed based on user feedback since many trainers now try to switch
-- There is an option to scale trainer rosters to the level of your 1st roster pkmn
-  - Talk to the right aide in Oak's lab to toggle on/off
-  - Enemy pkmn will evolve by level if applicable
-  - Gym leaders and the E4 scale slightly higher than normal trainers
-  - This is a good option to turn on for a pseudo-"New Game +" where you rematch all possible trainers in order
-- Playing on "Shift" style sets trainer stat exp back to zero, DVs back to fixed average, and re-enables badge boosts during trainer battles
   
 - Adjustments to learnsets and base stats
   - Pokemon have gained their TMs and Moves from yellow
@@ -372,9 +366,34 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - Give haunter/machoke/kadabra/graveler an evo by level option (level 45 to 48)
   - Butterfree and Beedrill have their prior evolutions' moves added to their level-0 move list
 
-- You can now play as a girl when starting a new game
-  - Has front, back, walking, and cycling sprites
-  - Has unique default names when starting a new game
+- Game corner prize costs re-balanced
+- Slightly increased slot odds
+- Slot machine coin counter runs twice as fast
+- There are four lucky slot machines instead of one
+- Interaction of slot reel modes tweaked for better gameplay
+- Bushes moved around so Erika can be battled without CUT
+- The bush blocking the Vermilion gym has been replaced with a blocking pkmn that goes away after the ss anne leaves
+- Gym leaders and elite 4 have their rosters, levels, & movesets slightly tweaked for gradual difficulty
+- Blaine has a touched-up battle sprite so he doesn't look like an alien
+  - Snagged this off reddit, but original artist unknown (let me know if this is yours)
+- The elite 4 now use the gym battle music rather than the standard trainer music
+- The juggler rosters, especially in fuchsia gym, have been slightly altered for flavor
+- Just for fun, the last juggler in the fuchsia gym is replaced with a cameo of Janine
+  - Though at this point she's still just a cooltrainer and doesn't have a unique battle sprite
+
+  
+#Additions:
+-----------
+
+#Difficulty and scalable trainers
+- There is an option to scale trainer rosters to the level of your 1st roster pkmn
+  - Talk to the right aide in Oak's lab to toggle on/off
+  - Enemy pkmn will evolve by level if applicable
+  - Gym leaders and the E4 scale slightly higher than normal trainers
+- Playing on "Shift" style sets trainer stat exp back to zero, DVs back to fixed average, and re-enables badge boosts during trainer battles
+
+
+#Quick Keys
 - Softlock Warp 
   - instantly teleport back to your mom's house if you get stuck or are unable to move after updating to a new patch
   - Intructions to perform:
@@ -396,69 +415,64 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
   - On the main battle menu, place the cursor over an option in the left column
   - Press the Select button
   - The enemy pokemon will play its cry if registered as owned
-- Game corner prize costs re-balanced
-- Slightly increased slot odds
-- Slot machine coin counter runs twice as fast
-- There are four lucky slot machines instead of one
-- Interaction of slot reel modes tweaked for better gameplay
-- A pkmn with Pay Day in the 1st party slot will play its cry when interacting with a lucky slot machine
-- A pkmn with Pay Day in the 1st party slot will play its cry when a slot machine enters payout modes
-  - 1 cry for a normal payout on the next pull
-  - 2 cries to signal the possibility of all 7s/bars on the next pull
-  - 3 cries to signal that super payout mode had been entered
-- Bushes moved around so Erika can be battled without CUT
-- The bush blocking the Vermilion gym has been replaced with a blocking pkmn that goes away after the ss anne leaves
-- The surfboard, a nugget, and TM 15 are hidden items added to the vermilion dock
-- Gym leaders and elite 4 have their rosters, levels, & movesets slightly tweaked for gradual difficulty
-- Can rematch most non gym-leader trainers
-- Rematch with Karate Master
-- Rematch with Brock
-- Rematch with Misty
-- Rematch with Surge
-- Rematch with Erika
-- Rematch with Sabrina
-- Rematch with Koga 
-- Rematch with Blaine
-- Rematch with Giovanni (respawns after leaving the gym)
-- Blaine has a touched-up battle sprite so he doesn't look like an alien
-  - Snagged this off reddit, but original artist unknown (let me know if this is yours)
-- The elite 4 now use the gym battle music rather than the standard trainer music
-- The juggler rosters, especially in fuchsia gym, have been slightly altered for flavor
-- Just for fun, the last juggler in the fuchsia gym is replaced with a cameo of Janine
-  - Though at this point she's still just a cooltrainer and doesn't have a unique battle sprite
-- S.S. Anne can be re-entered after defeating the elite 4.
-  - minor text change indicating its return
-  - the captain's text has been slightly altered for a more generic context
-- There is a new NPC in the west-east underground path that generates random battles after beating the elite 4
+
+ 
+#Graphics
+- You can now play as a girl when starting a new game
+  - Has front, back, walking, and cycling sprites
+  - Has unique default names when starting a new game
+- If a pkmn has DVs that would make it shiny in Gen 2, the Reflect animation plays when it enters battle
+- If playing on a super gameboy, shiny pkmn will have a palette swap on the status screen and also change color in battle
+- If playing on super gameboy, hold select when loading a pokedex entry to see that pokemon's shiny palette
+- Added an exp bar using code by Danny-E 33 
+
+
+#Pre-E4 NPCs
 - New NPC in celadon hotel will reward coins for showing him requested pkmn
-- Talking to prof oak after beating the elite 4 let's you challenge him to a battle
-- Trainer Green (named Seiga) can be battled next to the ss anne dock truck after beating the elite 4
-- Can battle Mr. Fuji after beating the elite 4
-- Can battle the Silph Chief after beating the elite 4
-- Mind battle with future Trainer RED after beating the elite 4 via the new girl outside Bill's villa
 - Move deleter/relearner added to the saffron house below COPYCAT's house
   - Code comes from Mateo's Red++ hack. It's simply the best gen-1 implementation and I cannot come up with something better.
   - Talk to the little girl to delete moves.
   - Talk to her tutor to relearn moves.
   - I have expanded Mateo's code so that it also detects default level-0 moves from the baseStats header files.
-- Pkmn with levels > 100 give 255 stat exp for each stat
-- Pkmn with levels > 100 have 255 base exp yield
-- If a pkmn has DVs that would make it shiny in Gen 2, the Reflect animation plays when it enters battle
-- If playing on a super gameboy, shiny pkmn will have a palette swap on the status screen and also change color in battle
-- If playing on super gameboy, hold select when loading a pokedex entry to see that pokemon's shiny palette
-- If a level 100 chansey is first in your roster:
-  - Shiny wild random encounters are much more common (1 in 256)
-  - Repel effects will not block shiny encounters
-- Added an exp bar using code by Danny-E 33 
+- Can rematch gym leaders and most non gym-leader trainers just by talking to them one or two times
+  - Giovanni respawns after leaving the gym so you can rematch him
+
+
+#Post-Game Content  
+- S.S. Anne can be re-entered after defeating the elite 4.
+  - minor text change indicating its return
+  - the captain's text has been slightly altered for a more generic context
 - There's a tournament being held in the SS Anne's kitchen after the elite 4 are beaten
   - Talk to the Gym Guy you find there
   - win 7 matches in a row for a master ball
   - Battles use teams of 3 pokemon
-  - Your team is healed in-between battles
+  - Your team is healed before battles
   - Enemy pokemon levels are based on the level of your 1st party pokemon
   - You must have an open item slot to claim your prize
   - Any trainer can appear with any three pokemon
   - No breaks allowed in-between battles
+- There is a new NPC in the west-east underground path that generates random battles after beating the elite 4
+- New item M.GENE: re-randomizes a pkmn's DVs to values of 9,8,8,8 or more.
+  - Win 5 matches in a row against the random team NPC to get M.GENE items (leaving the area resets the win streak)
+- Talking to prof oak after beating the elite 4 let's you challenge him to a battle
+- Trainer Green (named Seiga) can be battled next to the ss anne dock truck after beating the elite 4
+- Can battle Mr. Fuji after beating the elite 4
+- Can battle the Silph Chief after beating the elite 4
+- Mind battle with future Trainer RED after beating the elite 4 via the new girl outside Bill's villa
+
+
+#Tricks and Secrets
+- The surfboard, a nugget, and TM 15 are hidden items added to the vermilion dock
+- A pkmn with Pay Day in the 1st party slot will play its cry when interacting with a lucky slot machine
+- A pkmn with Pay Day in the 1st party slot will play its cry when a slot machine enters payout modes
+  - 1 cry for a normal payout on the next pull
+  - 2 cries to signal the possibility of all 7s/bars on the next pull
+  - 3 cries to signal that super payout mode had been entered
+- Pkmn with levels > 100 give 255 stat exp for each stat
+- Pkmn with levels > 100 have 255 base exp yield
+- If a level 100 chansey is first in your roster:
+  - Shiny wild random encounters are much more common (1 in 256)
+  - Repel effects will not block shiny encounters
 - You can now battle missingno on the infamous cinnabar shoreline
   - You must have gotten the pokedex diploma first
   - Activated the traditional way via the "old man in viridian" method

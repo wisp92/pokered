@@ -28,7 +28,7 @@ _CeladonHotelCoinGuyText_intro::
 	cont "#MON is what I"
 	cont "covet."
 	
-	para "Show me a "
+	para "Show me a fine"
 	line "@"
 	TX_RAM wcd6d
 	db $0
@@ -55,4 +55,10 @@ _CeladonHotelCoinGuyText_recieved::
 	line "@"
 	TX_BCD hCoins, 2 | LEADING_ZEROES | LEFT_ALIGN
 	text " coins!"
+	done
+	
+_CeladonHotelCoinGuyText_PC::
+	text "Use the PC over in"
+	line "the corner if you"
+	cont "need it."
 	done

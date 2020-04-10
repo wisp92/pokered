@@ -29,16 +29,19 @@ CeladonHotelCoinGuy:
 	ld b, COIN_CASE
 	call IsItemInBag
 	jr z, .need_coincase
-	call Has9740Coins
+	call HastTooManyCoins
 	jr nc, .too_many_coins
 	
 	ld a, [wPartyMon1Species]
 	ld b, a
 	ld a, [wUnusedD5A3]
 	cp b
-	jr nz, .endscript
+	ld hl, CeladonHotelCoinGuyText_PC
+	jr nz, .endscript_print
 	
-	callba Mon1DVsBCDScore
+	xor a
+	ld [wcd6d], a
+	callba Mon1BCDScore
 
 	;load 100 coins by default
 	xor a
@@ -74,10 +77,10 @@ CeladonHotelCoinGuy:
 .endscript
 	jp TextScriptEnd
 	
-Has9740Coins:
-	ld a, $97
+HastTooManyCoins:
+	ld a, $94
 	ld [hCoins], a
-	ld a, $40
+	ld a, $23
 	ld [hCoins + 1], a
 	jp HasEnoughCoins
 
@@ -108,4 +111,8 @@ CeladonHotelCoinGuyText_toomuch:
 
 CeladonHotelCoinGuyText_recieved:
 	TX_FAR _CeladonHotelCoinGuyText_recieved
+	db "@"
+	
+CeladonHotelCoinGuyText_PC:
+	TX_FAR _CeladonHotelCoinGuyText_PC
 	db "@"
