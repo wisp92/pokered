@@ -1,4 +1,4 @@
-PayDayEffect_:
+PayDayEffect_:	;joenote - re-writing for efficiency
 	xor a
 	ld hl, wcd6d
 	ld [hli], a
@@ -10,17 +10,13 @@ PayDayEffect_:
 .payDayEffect
 ; level * 2
 ;	add a
-;;;;;;;;joenote - change pay day to lvl * 8
-	;let's do a = (a*2)^3
-	sla a	
-	sla a
-	sla a
-;;;;;;;;
+
 	ld [H_DIVIDEND + 3], a
 	xor a
 	ld [H_DIVIDEND], a
 	ld [H_DIVIDEND + 1], a
 	ld [H_DIVIDEND + 2], a
+	
 ; convert to BCD
 	ld a, 100
 	ld [H_DIVISOR], a
@@ -40,9 +36,18 @@ PayDayEffect_:
 	ld a, [H_REMAINDER]
 	add b
 	ld [hl], a
-	ld de, wTotalPayDayMoney + 2
+	
 	ld c, $3
+	ld b, 5
+.loop	
+	ld hl, wcd6d + 2
+	ld de, wTotalPayDayMoney + 2
+	push bc
 	predef AddBCDPredef
+	pop bc
+	dec b
+	jr nz, .loop
+	
 	ld hl, CoinsScatteredText
 	jp PrintText
 
