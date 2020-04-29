@@ -38,7 +38,7 @@ PayDayEffect_:	;joenote - re-writing for efficiency
 	ld [hl], a
 	
 	ld c, $3
-	ld b, 5
+	ld b, 5	;joenote - make it a 5x multiplier like later generations
 .loop	
 	ld hl, wcd6d + 2
 	ld de, wTotalPayDayMoney + 2

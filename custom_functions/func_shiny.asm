@@ -78,7 +78,8 @@ ShinyPlayerAnimation:
 	jr z, .noPlayerShiny
 	push de
 	ld d, $00
-	callba PlayShinyAnimation
+	ld e, REFLECT
+	callba PlaySelectedAnimation
 	pop de
 	call SkipPlayerShinybit
 	push bc
@@ -96,7 +97,8 @@ ShinyEnemyAnimation:
 	jr z, .noEnemyShiny
 	push de
 	ld d, $01
-	callba PlayShinyAnimation
+	ld e, REFLECT
+	callba PlaySelectedAnimation
 	pop de
 	call SkipEnemyShinybit
 	push bc

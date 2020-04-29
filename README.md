@@ -22,16 +22,22 @@ Think of it as what the Nintendo Virtual Console re-release of red & blue might 
 Don't like the non-vanilla changes? Prefer only the bugfixes and AI improvements? Want a codebase from which to launch your own rom hack?
 Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is what you want. Head on over and start compiling.
 
+Title Screen
 ![Title Screen](/screenshots/bgb00001.bmp?raw=true)
 
+Rematches
 ![Rematches](/screenshots/bgb00003.bmp?raw=true)
 
+Trainer AI
 ![TrainerAI, Shiny SGB palette, & Exp Bar](/screenshots/bgb00013.bmp?raw=true)
 
-![Marts](/screenshots/bgb00011.bmp?raw=true)
+TMs in Marts
+![Marts](/screenshots/bgb00016.bmp?raw=true)
 
+Shiny Animation
 ![Shiny Animation](/screenshots/bgb00012.bmp?raw=true)
 
+Girl Trainer
 ![Girl Trainer](/screenshots/bgb00015.bmp?raw=true)
 
 
@@ -111,6 +117,11 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - Pay Day switch to 5x multiplier and fixed an overflow glitch
 - Hotel Coin Guy now does BCD conversion correctly and his payout has been increased
 - The function that handles BCD coin score can now do multiple selectable stats
+- Moved and separated out CryIfOwned function
+- The teams generated for opponents in the SS Anne tournament will now exclude mew and mewtwo
+- Tweaked dialogue for Seiga to give better hints at finding mew
+- Tweaked Fuji's battle dialogue to be less dramatic and rectify a plot hole
+- Function PlayShinyAnimation now genericized as PlaySelectedAnimation and works with a given animation value
 
 
 #New features & adjustments since last version:
@@ -119,7 +130,7 @@ Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is w
 - DVs of trainer pokemon are set back to vanilla default levels if using the "shift" battle style
 - TMs and HMs now have their attacks (albeit abbreviated) appended to the item names
 - The game corner chief will buy pokemon from you post-e4
-- The bookcase in the ship tileset has been replaced with an ship's navigational pc
+- The bookcase in the ship tileset has been replaced with a ship's navigational pc
 - A ship's PC has been added to the ss. anne's kitchen and made functional
 
 

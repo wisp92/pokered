@@ -9599,15 +9599,17 @@ ZeroLastDamage:
 	pop af
 	ret
 
-;joenote - play an animation for shiny DVs
-PlayShinyAnimation:
+;joenote - play an animation such as for for shiny DVs
+;register e should hold the animation's constant value
+;d = 00 for player animation / d = 01 for enemy animation
+PlaySelectedAnimation:
 	ld a, [H_WHOSETURN]
 	push af
 	ld a, d
 	ld [H_WHOSETURN], a
 	xor a
 	ld [wAnimationType], a
-	ld a, REFLECT
+	ld a, e
 	call PlayMoveAnimation
 	pop af
 	ld [H_WHOSETURN], a

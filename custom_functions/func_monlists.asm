@@ -1,6 +1,7 @@
 ListRealPkmn:
 	db MEW          ; $15
 	db MEWTWO       ; $83
+ListNonMewPkmn:
 	db MOLTRES      ; $49
 	db ARTICUNO     ; $4A
 	db ZAPDOS       ; $4B

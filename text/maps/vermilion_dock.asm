@@ -56,10 +56,22 @@ _VermilionDockSeigaVictory::
 	cont "under the truck."
 	
 	para "It cried MEW!"
-	line "and flew to the"
-	cont "cave in CERULEAN."
+	line "and flew towards"
+	cont "Cerulean City."
 	
-	para "Try searching"
-	line "on the cave's"
-	cont "lower level."
+	para "My locator traced"
+	line "it to some cave,"
+	cont "but the signal"
+	cont "was lost when it"
+	cont "went to a lower"
+	cont "level."
+	
+	para "Your DEX is much"
+	line "more advanced"
+	cont "than my locater."
+	
+	para "Maybe the #MON"
+	cont "will appear when"
+	cont "it's upgraded with"
+	cont "a diploma."
 	prompt

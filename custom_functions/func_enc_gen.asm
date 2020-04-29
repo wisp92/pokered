@@ -83,10 +83,14 @@ GetRandMon:
 ;generates a randomized 6-party enemy trainer roster
 GetRandRoster:
 	push bc
+	push de
+	ld de, ListRealPkmn
 	ld b, 6
 	jp GetRandRosterLoop
 GetRandRoster3:	;3-mon party
 	push bc
+	push de
+	ld de, ListNonMewPkmn
 	ld b, 3
 GetRandRosterLoop:
 	ld a, [wPartyMon1Level]
@@ -94,14 +98,14 @@ GetRandRosterLoop:
 .loop	
 	push bc
 	push de
-	ld de, ListRealPkmn
 	call GetRandMon
-	pop de
 	ld a, ENEMY_PARTY_DATA
 	ld [wMonDataLocation], a
+	
 	push hl
 	call ScaleTrainer
 	pop hl
+	
 	push hl
 	call AddPartyMon
 	call Random
@@ -111,10 +115,13 @@ GetRandRosterLoop:
 	add b
 	ld [wCurEnemyLVL], a
 	pop hl
+	
+	pop de
 	pop bc
 	dec b
 	jr nz, .loop
 ;end of loop
+	pop de
 	pop bc
 	xor a	;set the zero flag before returning
 	ret	

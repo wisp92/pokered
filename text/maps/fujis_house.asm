@@ -96,7 +96,7 @@ _FujiText_prebattle::
 	line "my former life as"
 	cont "a scientist."
 	
-	para "Then you must too"
+	para "Then you also"
 	line "know why I quit."
 	
 	para "The gene splicing"
@@ -107,23 +107,30 @@ _FujiText_prebattle::
 	line "the waters of an"
 	cont "UNKNOWN DUNGEON"
 	
-	para "Stay away from"
-	line "there and leave"
-	cont "the past buried!"
+	para "I'd advise you to"
+	line "stay away from"
+	cont "there and leave"
+	cont "the past buried."
 	done
 
 _FujiTextVictorySpeech::
-	text "I am..."
-	line "afraid."
+	text "Hmm..."
+	line "I'm a bit worried."
 	
-	para "The test subjects"
+	para "The test DITTOS"
 	line "might still be"
 	cont "replicating."
+	
+	para "Who knows what"
+	line "kind of #MON"
+	cont "they might have"
+	cont "cloned themselves"
+	cont "into?"
 
 	para "Go if you must."
 	line "Maybe it's you"
-	cont "who can ease"
-	cont "MEWTWO's anger."
+	cont "who can help fix"
+	cont "past mistakes."
 
 	para "SILPH's CHIEF is"
 	line "an old friend, so"

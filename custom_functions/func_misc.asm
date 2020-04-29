@@ -167,3 +167,38 @@ Hex2BCD:	;convert number in A to BCD in HL
 	add b
 	ld [hl], a
 	ret
+
+	
+;play an enemy mon's cry if it's not owned in the dex
+CryIfOwned:
+	call TestIfOwned
+	ret z	;return if already owned
+	ld a, [wEnemyMonSpecies]
+	call PlayCry
+	ret
+	
+;Set the zero flag (z) if the 'mon in wEnemyMonSpecies is already owned, else clear the zero flag (nz) if not owned
+TestIfOwned:
+	push bc
+	push hl
+	ld a, [wEnemyMonSpecies]
+	ld b, a
+	ld c, 0
+	ld hl, PokedexOrder
+.loop ; go through the list until we find an entry with a matching dex number
+	inc c
+	ld a, [hli]
+	cp b
+	jr nz, .loop
+	ld a, c
+
+	ld hl, wPokedexOwned
+	dec a
+	ld c, a
+	ld b, FLAG_TEST
+	predef FlagActionPredef
+	ld a, c
+	and a
+	pop hl
+	pop bc
+	ret
