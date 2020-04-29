@@ -23,21 +23,32 @@ Don't like the non-vanilla changes? Prefer only the bugfixes and AI improvements
 Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is what you want. Head on over and start compiling.
 
 Title Screen 
+
 ![Title Screen](/screenshots/bgb00001.bmp?raw=true)
 
+
 Rematches 
+
 ![Rematches](/screenshots/bgb00003.bmp?raw=true)
 
+
 Trainer AI 
+
 ![TrainerAI, Shiny SGB palette, & Exp Bar](/screenshots/bgb00013.bmp?raw=true)
 
+
 TMs in Marts 
+
 ![Marts](/screenshots/bgb00016.bmp?raw=true)
 
+
 Shiny Animation 
+
 ![Shiny Animation](/screenshots/bgb00012.bmp?raw=true)
 
+
 Girl Trainer 
+
 ![Girl Trainer](/screenshots/bgb00015.bmp?raw=true)
 
 
