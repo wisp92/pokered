@@ -4,6 +4,7 @@ CeladonCityScript:
 	ResetEvent EVENT_67F
 	ld a, 0
 	ld [wCeladonGameCornerCurScript], a	;something is writing $18 to the game corner script number and I don't know what
+	ld [wRocketHideout3CurScript], a	;something is writing $06 to this and I don't know what
 	ret
 
 CeladonCityTextPointers:

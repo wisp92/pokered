@@ -1,6 +1,6 @@
 # Shin Pokémon Red and Blue
 
-Version 1.13 
+Version 1.13 *hotfix*
 Note: V1.11 and 1.12 have a memory leak with the Select button.
 		Please update either of these to this version to fix the problem and prevent data corruption.
 
@@ -122,6 +122,7 @@ Girl Trainer
 - Tweaked dialogue for Seiga to give better hints at finding mew
 - Tweaked Fuji's battle dialogue to be less dramatic and rectify a plot hole
 - Function PlayShinyAnimation now genericized as PlaySelectedAnimation and works with a given animation value
+- *hotfix* enter celadon city to clear the corrupted map script number for rocket hideout floor 3
 
 
 #New features & adjustments since last version:
