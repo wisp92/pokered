@@ -3040,7 +3040,7 @@ wUnusedD71F:: ; d71f	;joenote - used as a backup address for the wDamage value
 	ds 2
 wUnusedD721:: ; d721	;joenote - use to set various wram flags
 	ds 1
-	;bit 0 - player is girl if set
+	;bit 0 - player is female trainer if set
 	;bit 1 - activate cinnabar shore if set
 	;bit 2 - override bit 0 for specific bank switching instances
 	;bit 3 - ghost marowak battle if set

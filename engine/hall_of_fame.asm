@@ -183,11 +183,19 @@ HoFMonInfoText:
 	next "TYPE2/@"
 
 HoFLoadPlayerPics:
-;joenote - support female sprite
+;joenote - support female trainer sprite
 	ld de, RedPicFFront
 	ld a, BANK(RedPicFFront)
+	
+	;need to preserve the bank value in A
+	push de
+	ld d, a
 	ld a, [wUnusedD721]
 	bit 0, a	;check if girl
+	;need to get the bank value back in A
+	ld a, d
+	pop de
+	
 	jr nz, .donefemale_front
 	ld de, RedPicFront
 	ld a, BANK(RedPicFront)
@@ -199,11 +207,19 @@ HoFLoadPlayerPics:
 	call CopyData
 	ld de, vFrontPic
 	call InterlaceMergeSpriteBuffers
-;joenote - support female sprite
+;joenote - support female trainer sprite
 	ld de, RedPicFBack
 	ld a, BANK(RedPicFBack)
+	
+	;need to preserve the bank value in A
+	push de
+	ld d, a
 	ld a, [wUnusedD721]
 	bit 0, a	;check if girl
+	;need to get the bank value back in A
+	ld a, d
+	pop de
+	
 	jr nz, .donefemale_back
 	ld de, RedPicBack
 	ld a, BANK(RedPicBack)

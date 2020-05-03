@@ -388,7 +388,7 @@ FishingAnim:
 	call DelayFrames
 	ld hl, wd736
 	set 6, [hl] ; reserve the last 4 OAM entries
-;joenote - support female sprite
+;joenote - support female trainer sprite
 	push af
 	ld de, RedFSprite
 	lb bc, BANK(RedFSprite), $c

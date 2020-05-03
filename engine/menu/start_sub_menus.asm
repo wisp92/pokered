@@ -528,7 +528,7 @@ StartMenu_TrainerInfo:
 
 ; loads tile patterns and draws everything except for gym leader faces / badges
 DrawTrainerInfo:
-;joenote - support female sprite
+;joenote - support female trainer sprite
 	ld de, RedPicFFront
 	lb bc, BANK(RedPicFFront), $01
 	ld a, [wUnusedD721]

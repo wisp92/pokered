@@ -36,7 +36,7 @@ OakSpeech:
 	call LoadTextBoxTilePatterns
 	call SetDefaultNames
 	predef InitPlayerData2
-;joenote - give option to play as a girl here
+;joenote - give option to play as a female trainer here
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	ld hl, AskIfGirlText
 	call PrintText
@@ -254,6 +254,6 @@ IntroDisplayPicCenteredOrUpperRight:
 	ld [hStartTileID], a
 	predef_jump CopyUncompressedPicToTilemap
 
-AskIfGirlText::	;joenote - text to ask if girl
+AskIfGirlText::	;joenote - text to ask if female trainer
 	TX_FAR _AskIfGirlText
 	db "@"

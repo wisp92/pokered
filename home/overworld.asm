@@ -2033,7 +2033,7 @@ RunMapScript::
 .return
 	ret
 
-;joenote - modified to properly load girl trainer sprites
+;joenote - modified to properly load female trainer sprites
 LoadWalkingPlayerSpriteGraphics::
 	callba LoadRedSpriteToDE
 ;	ld hl, vNPCSprites

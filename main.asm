@@ -2129,7 +2129,7 @@ INCLUDE "engine/battle/read_trainer_party.asm"
 INCLUDE "data/trainer_moves.asm"
 INCLUDE "data/trainer_parties.asm"
 
-;joenote - adding female sprites
+;joenote - adding female trainer sprites
 RedPicFBack::           INCBIN "pic/trainer/redb_f.pic"
 RedPicFFront:: 			INCBIN "pic/trainer/red_f.pic"
 RedFSprite:            INCBIN "gfx/sprites/redf.2bpp"

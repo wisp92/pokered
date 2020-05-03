@@ -54,7 +54,7 @@ _OakSpeechText3::
 	cont "awaits! Let's go!"
 	done
 
-;joenote - ask if girl
+;joenote - ask if female trainer
 _AskIfGirlText::
 	text "Are you a girl?"
 	done

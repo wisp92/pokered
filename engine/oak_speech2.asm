@@ -1,6 +1,6 @@
 ChoosePlayerName:
 	call OakSpeechSlidePicRight
-;joenote - support female sprite
+;joenote - support female trainer sprite
 	ld de, DefaultNamesPlayerF
 	ld a, [wUnusedD721]
 	bit 0, a	;check if girl
@@ -11,7 +11,7 @@ ChoosePlayerName:
 	ld a, [wCurrentMenuItem]
 	and a
 	jr z, .customName
-;joenote - support female sprite
+;joenote - support female trainer sprite
 	push af
 	ld hl, DefaultNamesPlayerListF
 	ld a, [wUnusedD721]
@@ -34,7 +34,7 @@ ChoosePlayerName:
 	jr z, .customName
 	call ClearScreen
 	call Delay3
-;joenote - support female sprite
+;joenote - support female trainer sprite
 	ld de, RedPicFFront
 	ld b, BANK(RedPicFFront)
 	ld a, [wUnusedD721]
@@ -208,7 +208,7 @@ DisplayIntroNameTextBox:
 .namestring
 	db "NAME@"
 
-;joenote - set girl names
+;joenote - set female trainer names
 DefaultNamesPlayerF:
 	db   "NEW NAME"
 	next "YELLOW"
@@ -272,6 +272,7 @@ GetDefaultName:
 	ld bc, $14
 	jp CopyData
 
+;joenote - set female trainer names
 DefaultNamesPlayerListF:
 	db "NEW NAME@"
 	db "YELLOW@"

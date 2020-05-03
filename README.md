@@ -1,6 +1,6 @@
 # Shin Pokémon Red and Blue
 
-Version 1.13 *hotfix*
+Version 1.13 *hotfix 2*
 Note: V1.11 and 1.12 have a memory leak with the Select button.
 		Please update either of these to this version to fix the problem and prevent data corruption.
 
@@ -123,6 +123,8 @@ Girl Trainer
 - Tweaked Fuji's battle dialogue to be less dramatic and rectify a plot hole
 - Function PlayShinyAnimation now genericized as PlaySelectedAnimation and works with a given animation value
 - *hotfix* enter celadon city to clear the corrupted map script number for rocket hideout floor 3
+- *hotfix 2* female trainer hall of fame graphics are no longer glitched
+- included tutorial for adding female trainer graphics
 
 
 #New features & adjustments since last version:

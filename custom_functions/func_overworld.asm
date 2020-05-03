@@ -291,7 +291,7 @@ MoveTestLoop:
 	
 
 
-;Overworld Female Sprite Functions
+;Overworld female trainer sprite functions
 LoadRedSpriteToDE:
 	ld de, RedFSprite
 	ld a, [wUnusedD721]
