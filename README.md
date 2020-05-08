@@ -125,6 +125,7 @@ Girl Trainer
 - *hotfix* enter celadon city to clear the corrupted map script number for rocket hideout floor 3
 - *hotfix 2* female trainer hall of fame graphics are no longer glitched
 - included tutorial for adding female trainer graphics
+- *hotfix 3* added some checks to make ghost marowak flag-checking more robust
 
 
 #New features & adjustments since last version:
