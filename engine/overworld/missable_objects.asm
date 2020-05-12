@@ -97,6 +97,9 @@ InitializeMissableObjectsFlags:
 	inc hl
 	jr .missableObjectsLoop
 
+IsObjectHidden2:	;joenote - adding in another way to test the show or hide state
+	ld a, [wMissableObjectIndex]
+	jr IsObjectHidden.loopdone
 ; tests if current sprite is a missable object that is hidden/has been removed
 IsObjectHidden:
 	ld a, [H_CURRENTSPRITEOFFSET]
@@ -110,6 +113,7 @@ IsObjectHidden:
 	cp b
 	ld a, [hli]
 	jr nz, .loop
+.loopdone
 	ld c, a
 	ld b, FLAG_TEST
 	ld hl, wMissableObjectFlags

@@ -1,18 +1,6 @@
 # Shin Pokémon Red and Blue
 
-Version 1.13 *hotfix 3*
-Note: V1.11 and 1.12 have a memory leak with the Select button.
-		Please update either of these to this version to fix the problem and prevent data corruption.
-
-Download the IPS patch file of the version you want and apply it to its respective USA rom.  
-
-Always apply patches to a fresh USA ROM or else strange glitches will occur.  
-
-Important Note: If you are using a save file from a previous version, you might be blocked by invisible walls upon loading the game.
-To fix this, you must use the Softlock Warp detailed below to teleport back to Palette Town.
-
-The master github branch will now be used for subsequent beta builds.
-Please refer to the backup branches for the last stable version.
+Version 1.14 beta
 
 This is a rom hack of pokemon red & blue based on the Pret team's disassembly.  
 It's a mostly-vanilla hack that focuses on fixing game engine bugs and oversights from the original game.  
@@ -22,6 +10,21 @@ Think of it as what the Nintendo Virtual Console re-release of red & blue might 
 Don't like the non-vanilla changes? Prefer only the bugfixes and AI improvements? Want a codebase from which to launch your own rom hack?
 Then the [Lite branch](https://github.com/jojobear13/shinpokered/tree/lite) is what you want. Head on over and start compiling.
 
+
+Download the IPS patch file of the version you want and apply it to its respective USA rom.  
+Always apply patches to a fresh USA ROM or else strange glitches will occur.  
+
+Important Note: If you are using a save file from a previous version, you might be blocked by invisible walls upon loading the game.
+To fix this, you must use the Softlock Warp detailed below to teleport back to Palette Town.
+
+Notice: V1.11 and 1.12 have a memory leak with the Select button.
+		Please update either of these to version 1.13 or later to fix the problem and prevent data corruption.
+
+Notice: V1.14 beta might crash upon loading a save from a previous patch.
+		To prevent this from happening, save outside in Palette Town.
+		This is an optional patch for now as it currently fixes miniscule game oddities
+
+		
 Title Screen  
 ![Title Screen](/screenshots/bgb00001.bmp?raw=true)
 
@@ -99,7 +102,9 @@ Girl Trainer
 	- Waking up from sleep does not waste the turn and the chosen move is used
 - Compatible with original Gameboy hardware (DMG, Super, Pocket, Color, Advance, SP)
 - Potentially compatible with Pokemon Stadium 1 & 2
-- Might be possible to use a save from vanilla USA red/blue with this rom hack (save in RED's house before transferring over)
+- Might be possible to use a save from vanilla USA red/blue with this rom hack 
+	- Save outside in Palette Town before transferring over
+	- Use the Softlock Warp to clear any invisible walls
 
 
 #Hack-Induced Bugfixes & Adjustments since last version:
@@ -126,6 +131,7 @@ Girl Trainer
 - *hotfix 2* female trainer hall of fame graphics are no longer glitched
 - included tutorial for adding female trainer graphics
 - *hotfix 3* added some checks to make ghost marowak flag-checking more robust
+- *v1.14 beta* fixed an problem with doubling sprite animation speed on certain maps
 
 
 #New features & adjustments since last version:

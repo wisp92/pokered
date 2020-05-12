@@ -45,6 +45,10 @@ VermilionCityScript0:
 	;else remove the blocking sprite
 	ld a, HS_VERMILION_PKMN
 	ld [wMissableObjectIndex], a
+	callba IsObjectHidden2
+	ld a, [$ffe5]
+	and a
+	jr nz, .end
 	predef HideObject
 .end
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

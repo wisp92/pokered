@@ -6,6 +6,10 @@ CeladonMart3Script:
 	;else remove the blocking sprite
 	ld a, HS_CELADON_MART_3_BLOCKER
 	ld [wMissableObjectIndex], a
+	callba IsObjectHidden2
+	ld a, [$ffe5]
+	and a
+	jr nz, .end
 	predef HideObject
 .end
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
