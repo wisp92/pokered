@@ -244,6 +244,7 @@ OverworldLoopLessDelay::
 	ld a, PLAYER_DIR_UP
 	ld [wPlayerMovingDirection], a
 .holdIntermediateDirectionLoop
+	call UpdateSprites
 	ld hl, wFlags_0xcd60
 	set 2, [hl]
 	ld hl, wCheckFor180DegreeTurn
