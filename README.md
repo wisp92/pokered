@@ -142,6 +142,8 @@ Girl Trainer
 - The game corner chief will buy pokemon from you post-e4
 - The bookcase in the ship tileset has been replaced with a ship's navigational pc
 - A ship's PC has been added to the ss. anne's kitchen and made functional
+- *v1.14 beta* fixed amazing man grpahical glitch
+- *v1.14 beta* the transitional frame when turning 180 degrees now shows correctly
 
 
 #Bugfixes:
