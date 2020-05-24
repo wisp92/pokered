@@ -435,7 +435,7 @@ LoadSGB:
 	ret nc
 	ld a, 1
 	ld [wOnSGB], a
-	ld a, [wGBC]
+	ld a, [hGBC]	;gbcnote - replaced wGBC
 	and a
 	jr z, .notGBC
 	ret
@@ -601,7 +601,7 @@ Wait7000:
 	ret
 
 SendSGBPackets:
-	ld a, [wGBC]
+	ld a, [hGBC]	;gbcnote - replaced wGBC
 	and a
 	jr z, .notGBC
 	push de

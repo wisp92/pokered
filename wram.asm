@@ -1409,7 +1409,7 @@ wScriptedNPCWalkCounter:: ; cf18
 
 	ds 1
 
-wGBC:: ; cf1a
+wGBC:: ; cf1a	;gbcnote - now unused since it is replaced with hGBC
 	ds 1
 
 wOnSGB:: ; cf1b
@@ -3291,8 +3291,16 @@ wEXPBarKeepFullFlag:: ds 1
 
 ; deed
 
-SECTION "Stack", WRAM0[$df00]
-	ds $ff
+wGBCBasePalPointers:: ds NUM_ACTIVE_PALS * 2 ; def5
+wGBCPal:: ds PAL_SIZE ; def9
+wLastBGP:: ds 1 ; defA
+wLastOBP0:: ds 1 ; defB
+wLastOBP1:: ds 1 ; defC
+wBGPPalsBuffer:: ds NUM_ACTIVE_PALS * PAL_SIZE ; df2e
+
+
+SECTION "Stack", WRAM0[$df2E]
+	ds $D2
 wStack:: ; dfff
 
 
