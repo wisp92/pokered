@@ -672,6 +672,61 @@ CopySGBBorderTiles:
 	jr nz, .tileLoop
 	ret
 
+
+;gbcnote - new function
+DMGPalToGBCPal::
+; Populate wGBCPal with colors from a base palette, selected using one of the
+; DMG palette registers.
+; Input:
+; a = which DMG palette register (CONVERT_BGP, CONVERT_OBP0, or CONVERT_OBP1)
+; de = address of base palette
+	cp CONVERT_BGP
+	jr nz, .notBGP
+	ld a, [rBGP]
+	ld [wLastBGP], a
+	jr .convert
+.notBGP
+	cp CONVERT_OBP0
+	jr nz, .notOBP0
+	ld a, [rOBP0]
+	ld [wLastOBP0], a
+	jr .convert
+.notOBP0
+	ld a, [rOBP1]
+	ld [wLastOBP1], a
+.convert
+;"A" now holds the palette data
+color_index = 0
+	REPT NUM_COLORS
+		ld b, a	;"B" now holds the palette data
+		and %11	;"A" now has just the value for the shade of palette color 0
+		call .GetColorAddress
+		;now load the value that HL points to into wGBCPal offset by the loop
+		ld a, [hli]
+		ld [wGBCPal + color_index * 2], a
+		ld a, [hl]
+		ld [wGBCPal + color_index * 2 + 1], a
+
+		IF color_index < (NUM_COLORS + -1)
+			ld a, b	;restore the palette data back into "A"
+			;rotate the palette data bits twice to the right so the next color in line becomes color 0
+			rrca
+			rrca
+		ENDC
+color_index = color_index + 1
+	ENDR
+	ret
+.GetColorAddress:
+	add a	;double the value of the shade in "A"
+	ld l, a	;load 2x shade value into "L"
+	xor a	;zero "A"
+	ld h, a	;and load it to "H", so HL is now [00|2x shade]
+	add hl, de	;HL now holds the base palette address offset by 2x shade in bytes (base, base+2, base+4, or base+6)
+	ret
+
+
+
+	
 INCLUDE "data/sgb_packets.asm"
 
 INCLUDE "data/mon_palettes.asm"

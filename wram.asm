@@ -3290,17 +3290,26 @@ wEXPBarNeededEXP::    ds 3
 wEXPBarKeepFullFlag:: ds 1
 
 ; deed
+wGBCBasePalPointers:: ds NUM_ACTIVE_PALS * 2 
+; def5
+wGBCPal:: ds PAL_SIZE 
+	;def5-def6 - rgb of color 0
+	;def7-def8 - rgb of color 1
+	;def9-defa - rgb of color 2
+	;defb-defc - rgb of color 3
+; defd
+wLastBGP:: ds 1 
+; defe
+wLastOBP0:: ds 1 
+; deff
+wLastOBP1:: ds 1 
+; df00
+wBGPPalsBuffer:: ds NUM_ACTIVE_PALS * PAL_SIZE 
+; df20
 
-wGBCBasePalPointers:: ds NUM_ACTIVE_PALS * 2 ; def5
-wGBCPal:: ds PAL_SIZE ; def9
-wLastBGP:: ds 1 ; defA
-wLastOBP0:: ds 1 ; defB
-wLastOBP1:: ds 1 ; defC
-wBGPPalsBuffer:: ds NUM_ACTIVE_PALS * PAL_SIZE ; df2e
 
-
-SECTION "Stack", WRAM0[$df2E]
-	ds $D2
+SECTION "Stack", WRAM0[$df20]
+	ds $DF
 wStack:: ; dfff
 
 

@@ -1,9 +1,9 @@
 ; palettes for overworlds, title screen, monsters
 SuperPalettes:
-	RGB 31,29,31 ; PAL_ROUTE
-	RGB 21,28,11
-	RGB 20,26,31
-	RGB 3,2,2
+	RGB 31,29,31 ; PAL_ROUTE	;shade 0 (2 bytes)	replaces white
+	RGB 21,28,11				;shade 1 (2 bytes)	replaces light gray
+	RGB 20,26,31				;shade 2 (2 bytes)	replaces dark gray
+	RGB 3,2,2					;shade 3 (2 bytes)	replaces black
 	RGB 31,29,31 ; PAL_PALLET
 	RGB 25,28,27
 	RGB 20,26,31
