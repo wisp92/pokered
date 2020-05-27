@@ -824,6 +824,32 @@ TransferCurBGPData::
 	pop de
 	ret
 
+TransferCurOBPData:
+; a = indexed offset of wGBCBasePalPointers
+	push de
+	;multiply index by 8 since each index represents 8 bytes worth of data
+	add a
+	add a
+	add a
+	or $80 ; set auto-increment bit of OBPI
+	ld [rOBPI], a
+	ld de, rOBPD
+	ld hl, wGBCPal
+	ld a, [rLCDC]
+	and rLCDC_ENABLE_MASK
+	jr nz, .lcdEnabled
+	rept NUM_COLORS
+	call TransferPalColorLCDDisabled
+	endr
+	jr .done
+.lcdEnabled
+	rept NUM_COLORS
+	call TransferPalColorLCDEnabled
+	endr
+.done
+	pop de
+	ret
+
 ;***********************************************************************************	
 INCLUDE "data/sgb_packets.asm"
 
