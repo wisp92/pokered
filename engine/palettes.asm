@@ -850,6 +850,56 @@ TransferCurOBPData:
 	pop de
 	ret
 
+_UpdateGBCPal_BGP_CheckDMG::
+	ld a, [hGBC]
+	and a
+	ret z
+; fall through
+_UpdateGBCPal_BGP::
+index = 0
+	REPT NUM_ACTIVE_PALS
+		ld a, [wGBCBasePalPointers + index * 2]
+		ld e, a
+		ld a, [wGBCBasePalPointers + index * 2 + 1]
+		ld d, a
+		ld a, CONVERT_BGP
+		call DMGPalToGBCPal
+		ld a, index
+		call BufferBGPPal
+index = index + 1
+	ENDR
+	call TransferBGPPals
+	ret
+
+_UpdateGBCPal_OBP::
+; c = CONVERT_OBP0 or CONVERT_OBP1
+index = 0
+	REPT NUM_ACTIVE_PALS
+		ld a, [wGBCBasePalPointers + index * 2]
+		ld e, a
+		ld a, [wGBCBasePalPointers + index * 2 + 1]
+		ld d, a
+		ld a, c
+		call DMGPalToGBCPal
+		ld a, c
+		dec a
+		rlca
+		rlca
+
+		IF index > 0
+			IF index == 1
+				inc a
+			ELSE
+				add index
+			ENDC
+		ENDC
+		;OBP0: a = 0, 1, 2, or 3
+		;OBP1: a = 4, 5, 6, or 7
+		call TransferCurOBPData
+index = index + 1
+	ENDR
+	ret
+
 ;***********************************************************************************	
 INCLUDE "data/sgb_packets.asm"
 
