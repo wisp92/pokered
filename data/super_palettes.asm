@@ -1,4 +1,8 @@
 ; palettes for overworlds, title screen, monsters
+; each RGB color is 2 bytes and uses 15 total bits
+;	- Red: 		bits 0 to 4
+;	- Greed:	bits 5 to 9
+; 	- Blue:		bits 10 to 14
 SuperPalettes:
 	RGB 31,29,31 ; PAL_ROUTE	;shade 0 (2 bytes)	replaces white
 	RGB 21,28,11				;shade 1 (2 bytes)	replaces light gray

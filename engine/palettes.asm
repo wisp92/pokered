@@ -607,7 +607,6 @@ SendSGBPackets:
 	push de
 	call InitGBCPalettes
 	pop hl
-	;call EmptyFunc5
 	ret
 .notGBC
 	push de
@@ -673,7 +672,8 @@ CopySGBBorderTiles:
 	ret
 
 
-;gbcnote - new function
+;gbcnote - new functions
+;***********************************************************************************
 DMGPalToGBCPal::
 ; Populate wGBCPal with colors from a base palette, selected using one of the
 ; DMG palette registers.
@@ -724,9 +724,81 @@ color_index = color_index + 1
 	add hl, de	;HL now holds the base palette address offset by 2x shade in bytes (base, base+2, base+4, or base+6)
 	ret
 
+TransferPalColorLCDEnabled:
+; Transfer a palette color while the LCD is enabled.
+; In case we're already in H-blank or V-blank, wait for it to end. This is a
+; precaution so that the transfer doesn't extend past the blanking period.
+	ld a, [rSTAT]
+	and %10 ; mask for non-V-blank/non-H-blank STAT mode
+	jr z, TransferPalColorLCDEnabled	;repeat if still in h-blank or v-blank
+; Wait for H-blank or V-blank to begin.
+.notInBlankingPeriod
+	ld a, [rSTAT]
+	and %10 ; mask for non-V-blank/non-H-blank STAT mode
+	jr nz, .notInBlankingPeriod
+; fall through
+TransferPalColorLCDDisabled:
+; Transfer a palette color while the LCD is disabled.
+	ld a, [hli]
+	ld [de], a
+	ld a, [hli]
+	ld [de], a
+	ret
 
+BufferBGPPal::
+; Copy wGBCPal to palette a in wBGPPalsBuffer.
+; a = indexed offset of wGBCBasePalPointers
+	push de
+	;multiply index by 8 since each index represents 8 bytes worth of data
+	add a
+	add a
+	add a
+	ld l, a
+	xor a
+	ld h, a
+	ld de, wBGPPalsBuffer
+	add hl, de	;hl now points to wBGPPalsBuffer + 8*index
+	ld de, wGBCPal
+	ld c, PAL_SIZE
+.loop	;copy the 8 bytes of wGBCPal to its indexed spot in wBGPPalsBuffer
+	ld a, [de]
+	ld [hli], a
+	inc de
+	dec c
+	jr nz, .loop
+	pop de
+	ret
 
-	
+TransferBGPPals::
+; Transfer the buffered BG palettes.
+	ld a, [rLCDC]
+	and rLCDC_ENABLE_MASK
+	jr z, .lcdDisabled
+	; have to wait until LCDC is disabled
+	di	;disable interrupts
+.waitLoop
+	ld a, [rLY]
+	cp 144
+	jr c, .waitLoop
+.lcdDisabled
+	call .DoTransfer
+	ei	;enable interrupts
+	ret
+.DoTransfer:
+	xor a
+	or $80 ; set the auto-increment bit of rBPGI
+	ld [rBGPI], a
+	ld de, rBGPD
+	ld hl, wBGPPalsBuffer
+	ld c, 4 * PAL_SIZE
+.loop
+	ld a, [hli]
+	ld [de], a
+	dec c
+	jr nz, .loop
+	ret
+
+;***********************************************************************************	
 INCLUDE "data/sgb_packets.asm"
 
 INCLUDE "data/mon_palettes.asm"
