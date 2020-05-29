@@ -176,3 +176,22 @@ ENDC
 	RGB 31,28,14
 	RGB 24,20,10
 	RGB 3,2,2
+
+;gbcnote - extra palettes from Yellow version
+	; PAL_25
+	RGB 31, 31, 31
+	RGB 31, 31,  0
+	RGB 11, 23, 31
+	RGB  3,  3,  3
+
+	; PAL_26
+	RGB 31, 31, 31
+	RGB 31, 18,  0
+	RGB 19,  7,  1
+	RGB  3,  3,  3
+
+	; PAL_27
+	RGB 31, 31, 31
+	RGB  9,  9,  9
+	RGB 31, 21,  0
+	RGB  3,  3,  3

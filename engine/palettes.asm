@@ -16,7 +16,7 @@ _RunPaletteCommand:
 	ld h, [hl]
 	ld l, a
 	ld de, SendSGBPackets
-	push de
+	push de	;by pushing de, the next 'ret' command encountered will jump to SendSGBPackets
 	jp hl
 
 SetPal_BattleBlack:
@@ -607,6 +607,12 @@ SendSGBPackets:
 	push de
 	call InitGBCPalettes
 	pop hl
+	;gbcnote - initialize the second pal packet in de (now in hl) then enable the lcd
+	call InitGBCPalettes
+	ld a, [rLCDC]
+	and rLCDC_ENABLE_MASK
+	ret z
+	call Delay3
 	ret
 .notGBC
 	push de
@@ -614,30 +620,50 @@ SendSGBPackets:
 	pop hl
 	jp SendSGBPacket
 
-InitGBCPalettes:
-	ld a, $80 ; index 0 with auto-increment
-	ld [rBGPI], a
+InitGBCPalettes:	;gbcnote - updating this to work with the Yellow code
+	ld a, [hl]
+	and $f8
+	cp $20	;check to see if hl points to a blk pal packet
+	jp z, TranslatePalPacketToBGMapAttributes	;jump if so
+	;otherwise hl points to a different pal packet or wPalPacket
 	inc hl
-	ld c, $20
-.loop
-	ld a, [hli]
-	inc hl
-	add a
-	add a
-	add a
-	ld de, SuperPalettes
-	add e
-	jr nc, .noCarry
-	inc d
-.noCarry
-	ld a, [de]
-	ld [rBGPD], a
-	dec c
-	jr nz, .loop
+index = 0
+	REPT NUM_ACTIVE_PALS
+		IF index > 0
+			pop hl
+		ENDC
+
+		ld a, [hli]	;get palette ID into 'A'
+		inc hl
+
+		IF index < (NUM_ACTIVE_PALS + -1)
+			push hl
+		ENDC
+
+		call GetGBCBasePalAddress	;get palette address into de
+		ld a, e
+		ld [wGBCBasePalPointers + index * 2], a
+		ld a, d
+		ld [wGBCBasePalPointers + index * 2 + 1], a
+
+		ld a, CONVERT_BGP
+		call DMGPalToGBCPal
+		ld a, index
+		call TransferCurBGPData
+
+		ld a, CONVERT_OBP0
+		call DMGPalToGBCPal
+		ld a, index
+		call TransferCurOBPData
+
+		ld a, CONVERT_OBP1
+		call DMGPalToGBCPal
+		ld a, index + 4
+		call TransferCurOBPData
+index = index + 1
+	ENDR
 	ret
 
-;EmptyFunc5:
-;	ret
 
 CopySGBBorderTiles:
 ; SGB tile data is stored in a 4BPP planar format.
@@ -775,10 +801,11 @@ TransferBGPPals::
 	and rLCDC_ENABLE_MASK
 	jr z, .lcdDisabled
 	; have to wait until LCDC is disabled
+	; LCD should only ever be disabled during the V-blank period to prevent hardware damage
 	di	;disable interrupts
 .waitLoop
 	ld a, [rLY]
-	cp 144
+	cp 144	;V-blank can be confirmed when the value of LY is greater than or equal to 144
 	jr c, .waitLoop
 .lcdDisabled
 	call .DoTransfer
@@ -898,6 +925,25 @@ index = 0
 		call TransferCurOBPData
 index = index + 1
 	ENDR
+	ret
+
+GetGBCBasePalAddress::
+; Input: a = palette ID
+; Output: de = palette address
+	push hl
+	ld l, a
+	xor a
+	ld h, a
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	ld de, SuperPalettes
+	add hl, de
+	ld a, l
+	ld e, a
+	ld a, h
+	ld d, a
+	pop hl
 	ret
 
 ;***********************************************************************************	
