@@ -32,6 +32,7 @@ PlayIntroScene:
 	ld [rBGP], a
 	ld [rOBP0], a
 	ld [rOBP1], a
+	call UpdateAllPal
 	xor a
 	ld [hSCX], a
 	ld b, GENGAR_INTRO_TILES1
@@ -314,6 +315,7 @@ PlayShootingStar:
 	callba LoadCopyrightAndTextBoxTiles
 	ldPal a, BLACK, DARK_GRAY, LIGHT_GRAY, WHITE
 	ld [rBGP], a
+	call UpdateGBCPal_BGP
 	ld c, 180
 	call DelayFrames
 	call ClearScreen

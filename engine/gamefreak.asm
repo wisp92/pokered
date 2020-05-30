@@ -3,6 +3,7 @@ LoadShootingStarGraphics:
 	ld [rOBP0], a
 	ld a, $a4
 	ld [rOBP1], a
+	call UpdateOBPPal
 	ld de, AnimationTileset2 + $30 ; star tile (top left quadrant)
 	ld hl, vChars1 + $200
 	lb bc, BANK(AnimationTileset2), $01
@@ -75,6 +76,7 @@ AnimateShootingStar:
 	ld hl, rOBP0
 	rrc [hl]
 	rrc [hl]
+	call UpdateGBCPal_OBP0
 	ld c, 10
 	call CheckForUserInterruption
 	ret c
@@ -204,6 +206,7 @@ MoveDownSmallStars:
 	ld a, [rOBP1]
 	xor %10100000
 	ld [rOBP1], a
+	call UpdateGBCPal_OBP1
 
 	ld c, 3
 	call CheckForUserInterruption

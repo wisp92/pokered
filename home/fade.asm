@@ -16,6 +16,7 @@ LoadGBPal::
 	ld [rOBP0], a
 	ld a, [hli]
 	ld [rOBP1], a
+	call UpdateAllPal
 	ret
 
 GBFadeInFromBlack::
@@ -34,6 +35,7 @@ GBFadeIncCommon:
 	ld [rOBP0], a
 	ld a, [hli]
 	ld [rOBP1], a
+	call UpdateAllPal
 	ld c, 8
 	call DelayFrames
 	dec b
@@ -56,6 +58,7 @@ GBFadeDecCommon:
 	ld [rOBP0], a
 	ld a, [hld]
 	ld [rBGP], a
+	call UpdateAllPal
 	ld c, 8
 	call DelayFrames
 	dec b

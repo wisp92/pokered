@@ -158,6 +158,7 @@ SlidePlayerAndEnemySilhouettesOnScreen:
 	ld [rBGP], a
 	ld [rOBP0], a
 	ld [rOBP1], a
+	call UpdateAllPal
 .slideSilhouettesLoop ; slide silhouettes of the player's pic and the enemy's pic onto the screen
 	ld h, b
 	ld l, $40

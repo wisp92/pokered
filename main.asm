@@ -2096,8 +2096,6 @@ INCLUDE "engine/evolution.asm"
 
 INCLUDE "engine/overworld/elevator.asm"
 
-INCLUDE "engine/items/tm_prices.asm"
-
 
 SECTION "bank2D",ROMX,BANK[$2D]	;joenote - This is a known empty bank. Going to start moving stuff here
 
@@ -2135,5 +2133,11 @@ RedPicFFront:: 			INCBIN "pic/trainer/red_f.pic"
 RedFSprite:            INCBIN "gfx/sprites/redf.2bpp"
 RedFCyclingSprite:     INCBIN "gfx/sprites/cyclingf.2bpp"
 
+;gbcnote - moved here to save space
+INCLUDE "engine/items/tm_prices.asm"
+
+
+
 SECTION "bank2E",ROMX,BANK[$2E]
+
 INCLUDE "engine/bg_map_attributes.asm"

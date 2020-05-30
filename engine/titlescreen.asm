@@ -139,6 +139,7 @@ ENDC
 	call GBPalNormal
 	ld a, %11100100
 	ld [rOBP0], a
+	call UpdateGBCPal_OBP0
 
 ; make pokemon logo bounce up and down
 	ld bc, hSCY ; background scroll Y
