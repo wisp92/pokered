@@ -2134,3 +2134,6 @@ RedPicFBack::           INCBIN "pic/trainer/redb_f.pic"
 RedPicFFront:: 			INCBIN "pic/trainer/red_f.pic"
 RedFSprite:            INCBIN "gfx/sprites/redf.2bpp"
 RedFCyclingSprite:     INCBIN "gfx/sprites/cyclingf.2bpp"
+
+SECTION "bank2E",ROMX,BANK[$2E]
+INCLUDE "engine/bg_map_attributes.asm"

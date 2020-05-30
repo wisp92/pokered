@@ -280,6 +280,16 @@ SetPal_TrainerCard:
 	ld de, wTrainerCardBlkPacket
 	ret
 
+SendUnknownPalPacket_7205d::
+	ld hl, UnknownPalPacket_72811
+	ld de, BlkPacket_WholeScreen
+	ret
+
+SendUnknownPalPacket_72064::
+	ld hl, UnknownPalPacket_72821
+	ld de, UnknownPacket_72751
+	ret
+
 SetPalFunctions:
 	dw SetPal_BattleBlack
 	dw SetPal_Battle
@@ -295,6 +305,10 @@ SetPalFunctions:
 	dw SetPal_PokemonWholeScreen
 	dw SetPal_GameFreakIntro
 	dw SetPal_TrainerCard
+	;gbcnote - new palettes
+	dw SendUnknownPalPacket_7205d
+	dw SendUnknownPalPacket_72064
+	
 
 ; The length of the blk data of each badge on the Trainer Card.
 ; The Rainbow Badge has 3 entries because of its many colors.
@@ -428,18 +442,21 @@ SendSGBPacket:
 ; else send 16 more bytes
 	jr .loop2
 
-LoadSGB:
+LoadSGB:	;gbcnote - slightly modified the checks
 	xor a
 	ld [wOnSGB], a
 	call CheckSGB
-	ret nc
-	ld a, 1
-	ld [wOnSGB], a
-	ld a, [hGBC]	;gbcnote - replaced wGBC
+	jr c, .onSGB
+	ld a, [hGBC]
 	and a
-	jr z, .notGBC
+	jr z, .onDMG
+	ld a, $1
+	ld [wOnSGB], a
+.onDMG
 	ret
-.notGBC
+.onSGB
+	ld a, $1
+	ld [wOnSGB], a
 	di
 	call PrepareSuperNintendoVRAMTransfer
 	ei
@@ -554,6 +571,7 @@ CopyGfxToSuperNintendoVRAM:
 	call DisableLCD
 	ld a, $e4
 	ld [rBGP], a
+	call _UpdateGBCPal_BGP_CheckDMG
 	ld de, vChars1
 	ld a, [wCopyingSGBTileData]
 	and a
@@ -584,6 +602,7 @@ CopyGfxToSuperNintendoVRAM:
 	call SendSGBPacket
 	xor a
 	ld [rBGP], a
+	call _UpdateGBCPal_BGP_CheckDMG
 	ei
 	ret
 
@@ -945,6 +964,54 @@ GetGBCBasePalAddress::
 	ld d, a
 	pop hl
 	ret
+	
+TranslatePalPacketToBGMapAttributes::
+; translate the SGB pal packets into something usable for the GBC
+	push hl
+	pop de
+	ld hl, PalPacketPointers
+	ld a, [hli]
+	ld c, a
+.loop
+	ld a, e
+.innerLoop
+	cp [hl]
+	jr z, .checkHighByte
+	inc hl
+	inc hl
+	dec c
+	jr nz, .innerLoop
+	ret
+.checkHighByte
+; the low byte of pointer matched, so check the high byte
+	inc hl
+	ld a, d
+	cp [hl]
+	jr z, .foundMatchingPointer
+	inc hl
+	dec c
+	jr nz, .loop
+	ret
+.foundMatchingPointer
+	callba LoadBGMapAttributes
+	ret
+
+PalPacketPointers::
+	db (palPacketPointersEnd - palPacketPointers) / 2
+palPacketPointers
+	dw BlkPacket_WholeScreen
+	dw BlkPacket_Battle
+	dw BlkPacket_StatusScreen
+	dw BlkPacket_Pokedex
+	dw BlkPacket_Slots
+	dw BlkPacket_Titlescreen
+	dw BlkPacket_NidorinoIntro
+	dw wPartyMenuBlkPacket
+	dw wTrainerCardBlkPacket
+	dw BlkPacket_GameFreakIntro
+	dw wPalPacket
+	dw UnknownPacket_72751
+palPacketPointersEnd
 
 ;***********************************************************************************	
 INCLUDE "data/sgb_packets.asm"

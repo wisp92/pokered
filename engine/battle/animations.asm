@@ -1957,7 +1957,7 @@ _AnimationSlideMonOff:
 ; This is a bug. The lower right corner tile of the mon back pic is blanked
 ; while the mon is sliding off the screen. It should compare with the max tile
 ; plus one instead.
-	cp $61
+	cp $62	;joenote - fixed
 	ret c
 	ld a, " "
 	ret
@@ -2873,6 +2873,13 @@ AnimationShakeEnemyHUD:
 	ld hl, vBGMap1 - $20 * 7
 	call BattleAnimCopyTileMapToVRAM
 
+; gbcnote - update BGMap attributes
+	ld a, [hGBC]
+	and a
+	jr z, .notGBC
+	ld c, 13
+	callba LoadBGMapAttributes
+.notGBC
 ; Move the window so that the row below the enemy HUD (in BG map 0) lines up
 ; with the top row of the window on the screen. This makes it so that the window
 ; covers everything below the enemy HD with a copy that looks just like what
@@ -2906,6 +2913,13 @@ AnimationShakeEnemyHUD:
 	ld [hWY], a
 	ld hl, vBGMap1
 	call BattleAnimCopyTileMapToVRAM
+; gbcnote - update BGMap attributes
+	ld a, [hGBC]
+	and a
+	jr z, .notGBC2
+	ld c, 11
+	callba LoadBGMapAttributes
+.notGBC2
 	xor a
 	ld [hWY], a
 	call SaveScreenTilesToBuffer1
