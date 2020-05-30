@@ -107,7 +107,7 @@ Start::
 	xor a
 	jr .ok
 .gbc
-	ld a, 0
+	ld a, 1	;gbcnote - need to tell the game that GBC is in use
 .ok
 	ld [hGBC], a	;gbcnote - replaced wGBC
 	jp Init
