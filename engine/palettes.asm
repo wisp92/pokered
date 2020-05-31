@@ -665,7 +665,7 @@ index = 0
 		ld a, d
 		ld [wGBCBasePalPointers + index * 2 + 1], a
 
-		ld a, CONVERT_BGP
+		xor a ; CONVERT_BGP
 		call DMGPalToGBCPal
 		ld a, index
 		call TransferCurBGPData
@@ -683,55 +683,40 @@ index = index + 1
 	ENDR
 	ret
 
-
-CopySGBBorderTiles:
-; SGB tile data is stored in a 4BPP planar format.
-; Each tile is 32 bytes. The first 16 bytes contain bit planes 1 and 2, while
-; the second 16 bytes contain bit planes 3 and 4.
-; This function converts 2BPP planar data into this format by mapping
-; 2BPP colors 0-3 to 4BPP colors 0-3. 4BPP colors 4-15 are not used.
-	ld b, 128
-
-.tileLoop
-
-; Copy bit planes 1 and 2 of the tile data.
-	ld c, 16
-.copyLoop
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .copyLoop
-
-; Zero bit planes 3 and 4.
-	ld c, 16
-	xor a
-.zeroLoop
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .zeroLoop
-
-	dec b
-	jr nz, .tileLoop
-	ret
-
-
 ;gbcnote - new functions
 ;***********************************************************************************
+GetGBCBasePalAddress::
+; Input: a = palette ID
+; Output: de = palette address
+	push hl
+	ld l, a
+	xor a
+	ld h, a
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	ld de, SuperPalettes
+	add hl, de
+	ld a, l
+	ld e, a
+	ld a, h
+	ld d, a
+	pop hl
+	ret
+
 DMGPalToGBCPal::
 ; Populate wGBCPal with colors from a base palette, selected using one of the
 ; DMG palette registers.
 ; Input:
-; a = which DMG palette register (CONVERT_BGP, CONVERT_OBP0, or CONVERT_OBP1)
-; de = address of base palette
-	cp CONVERT_BGP
+; a = which DMG palette register
+; de = address of GBC base palette
+	and a
 	jr nz, .notBGP
 	ld a, [rBGP]
 	ld [wLastBGP], a
 	jr .convert
 .notBGP
-	cp CONVERT_OBP0
+	dec a
 	jr nz, .notOBP0
 	ld a, [rOBP0]
 	ld [wLastOBP0], a
@@ -769,25 +754,31 @@ color_index = color_index + 1
 	add hl, de	;HL now holds the base palette address offset by 2x shade in bytes (base, base+2, base+4, or base+6)
 	ret
 
-TransferPalColorLCDEnabled:
-; Transfer a palette color while the LCD is enabled.
-; In case we're already in H-blank or V-blank, wait for it to end. This is a
-; precaution so that the transfer doesn't extend past the blanking period.
-	ld a, [rSTAT]
-	and %10 ; mask for non-V-blank/non-H-blank STAT mode
-	jr z, TransferPalColorLCDEnabled	;repeat if still in h-blank or v-blank
-; Wait for H-blank or V-blank to begin.
-.notInBlankingPeriod
-	ld a, [rSTAT]
-	and %10 ; mask for non-V-blank/non-H-blank STAT mode
-	jr nz, .notInBlankingPeriod
-; fall through
-TransferPalColorLCDDisabled:
-; Transfer a palette color while the LCD is disabled.
-	ld a, [hli]
-	ld [de], a
-	ld a, [hli]
-	ld [de], a
+TransferCurBGPData::
+; a = indexed offset of wGBCBasePalPointers
+	push de
+	;multiply index by 8 since each index represents 8 bytes worth of data
+	add a
+	add a
+	add a
+	or $80 ; set auto-increment bit of rBGPI
+	ld [rBGPI], a
+	ld de, rBGPD
+	ld hl, wGBCPal
+	ld b, %10 ; mask for non-V-blank/non-H-blank STAT mode
+	ld a, [rLCDC]
+	and rLCDC_ENABLE_MASK
+	jr nz, .lcdEnabled
+	rept NUM_COLORS
+	call TransferPalColorLCDDisabled
+	endr
+	jr .done
+.lcdEnabled
+	rept NUM_COLORS
+	call TransferPalColorLCDEnabled
+	endr
+.done
+	pop de
 	ret
 
 BufferBGPPal::
@@ -844,17 +835,18 @@ TransferBGPPals::
 	jr nz, .loop
 	ret
 
-TransferCurBGPData::
+TransferCurOBPData:
 ; a = indexed offset of wGBCBasePalPointers
 	push de
 	;multiply index by 8 since each index represents 8 bytes worth of data
 	add a
 	add a
 	add a
-	or $80 ; set auto-increment bit of rBGPI
-	ld [rBGPI], a
-	ld de, rBGPD
+	or $80 ; set auto-increment bit of OBPI
+	ld [rOBPI], a
+	ld de, rOBPD
 	ld hl, wGBCPal
+	ld b, %10 ; mask for non-V-blank/non-H-blank STAT mode
 	ld a, [rLCDC]
 	and rLCDC_ENABLE_MASK
 	jr nz, .lcdEnabled
@@ -870,30 +862,25 @@ TransferCurBGPData::
 	pop de
 	ret
 
-TransferCurOBPData:
-; a = indexed offset of wGBCBasePalPointers
-	push de
-	;multiply index by 8 since each index represents 8 bytes worth of data
-	add a
-	add a
-	add a
-	or $80 ; set auto-increment bit of OBPI
-	ld [rOBPI], a
-	ld de, rOBPD
-	ld hl, wGBCPal
-	ld a, [rLCDC]
-	and rLCDC_ENABLE_MASK
-	jr nz, .lcdEnabled
-	rept NUM_COLORS
-	call TransferPalColorLCDDisabled
-	endr
-	jr .done
-.lcdEnabled
-	rept NUM_COLORS
-	call TransferPalColorLCDEnabled
-	endr
-.done
-	pop de
+TransferPalColorLCDEnabled:
+; Transfer a palette color while the LCD is enabled.
+; In case we're already in H-blank or V-blank, wait for it to end. This is a
+; precaution so that the transfer doesn't extend past the blanking period.
+	ld a, [rSTAT]
+	and b ; mask for non-V-blank/non-H-blank STAT mode
+	jr z, TransferPalColorLCDEnabled	;repeat if still in h-blank or v-blank
+; Wait for H-blank or V-blank to begin.
+.notInBlankingPeriod
+	ld a, [rSTAT]
+	and b ; mask for non-V-blank/non-H-blank STAT mode
+	jr nz, .notInBlankingPeriod
+; fall through
+TransferPalColorLCDDisabled:
+; Transfer a palette color while the LCD is disabled.
+	ld a, [hli]
+	ld [de], a
+	ld a, [hli]
+	ld [de], a
 	ret
 
 _UpdateGBCPal_BGP_CheckDMG::
@@ -908,7 +895,7 @@ index = 0
 		ld e, a
 		ld a, [wGBCBasePalPointers + index * 2 + 1]
 		ld d, a
-		ld a, CONVERT_BGP
+		xor a ; CONVERT_BGP
 		call DMGPalToGBCPal
 		ld a, index
 		call BufferBGPPal
@@ -946,24 +933,6 @@ index = index + 1
 	ENDR
 	ret
 
-GetGBCBasePalAddress::
-; Input: a = palette ID
-; Output: de = palette address
-	push hl
-	ld l, a
-	xor a
-	ld h, a
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld de, SuperPalettes
-	add hl, de
-	ld a, l
-	ld e, a
-	ld a, h
-	ld d, a
-	pop hl
-	ret
 	
 TranslatePalPacketToBGMapAttributes::
 ; translate the SGB pal packets into something usable for the GBC
@@ -1014,6 +983,40 @@ palPacketPointers
 palPacketPointersEnd
 
 ;***********************************************************************************	
+
+CopySGBBorderTiles:
+; SGB tile data is stored in a 4BPP planar format.
+; Each tile is 32 bytes. The first 16 bytes contain bit planes 1 and 2, while
+; the second 16 bytes contain bit planes 3 and 4.
+; This function converts 2BPP planar data into this format by mapping
+; 2BPP colors 0-3 to 4BPP colors 0-3. 4BPP colors 4-15 are not used.
+	ld b, 128
+
+.tileLoop
+
+; Copy bit planes 1 and 2 of the tile data.
+	ld c, 16
+.copyLoop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .copyLoop
+
+; Zero bit planes 3 and 4.
+	ld c, 16
+	xor a
+.zeroLoop
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .zeroLoop
+
+	dec b
+	jr nz, .tileLoop
+	ret
+
+
 INCLUDE "data/sgb_packets.asm"
 
 INCLUDE "data/mon_palettes.asm"
