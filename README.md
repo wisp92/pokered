@@ -144,6 +144,7 @@ Girl Trainer
 - A ship's PC has been added to the ss. anne's kitchen and made functional
 - *v1.14 beta* fixed amazing man grpahical glitch
 - *v1.14 beta* the transitional frame when turning 180 degrees now shows correctly
+- *v1.14 beta* The lower right corner tile of the mon back pic is blanked
 
 
 #Bugfixes:
