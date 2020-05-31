@@ -539,7 +539,8 @@ SetAnimationPalette:
 	ld [rOBP0], a
 	ld a, $6c
 	ld [rOBP1], a
-	call UpdateOBPPal
+	call UpdateGBCPal_OBP0
+	call UpdateGBCPal_OBP1
 	ret
 .notSGB
 	ld a, $e4
@@ -547,7 +548,8 @@ SetAnimationPalette:
 	ld [rOBP0], a
 	ld a, $6c
 	ld [rOBP1], a
-	call UpdateOBPPal
+	call UpdateGBCPal_OBP0
+	call UpdateGBCPal_OBP1
 	ret
 
 PlaySubanimation:

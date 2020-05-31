@@ -3,7 +3,8 @@ LoadShootingStarGraphics:
 	ld [rOBP0], a
 	ld a, $a4
 	ld [rOBP1], a
-	call UpdateOBPPal
+	call UpdateGBCPal_OBP0
+	call UpdateGBCPal_OBP1
 	ld de, AnimationTileset2 + $30 ; star tile (top left quadrant)
 	ld hl, vChars1 + $200
 	lb bc, BANK(AnimationTileset2), $01
