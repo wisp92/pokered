@@ -132,6 +132,8 @@ Girl Trainer
 - included tutorial for adding female trainer graphics
 - *hotfix 3* added some checks to make ghost marowak flag-checking more robust
 - *v1.14 beta* fixed an problem with doubling sprite animation speed on certain maps
+- *v1.14 beta* minimum sleep counter value increased by +1 since attacks can now happen on wakeup
+- *v1.14 beta* cerulean badge-house guy now gives correct information about the thunder and soul badges
 
 
 #New features & adjustments since last version:
@@ -307,7 +309,8 @@ Girl Trainer
 - Adjustment to stat mods, conditions, and items
   - Sleep does not prevent choosing a move
   - Waking up from sleep does not waste the turn and the chosen move is used
-  - Badge stat-ups are now only applied in wild pokemon battles to give parity to enemy trainers
+    - The sleep counter's minimum value is increased by +1 to maintain accuracy of sleep moves
+  - Badge stat-ups are now only applied in wild pokemon battles to give parity to enemy trainers (only in "Set" style)
   - The effect of X Accuracy is no longer applied to one-hit K.O. moves (it originally made them auto-hit)
   - The limiter on vitamins is raised to a max of 62720 stat exp after the elite 4 have been beaten
   - Pkmn added to the player's party (either as a gift or in-game trade) have at the least DVs of 9,8,8,8

@@ -8,11 +8,6 @@ _CeruleanHouse2Text_74e77::
 
 	para "Those BADGEs have"
 	line "amazing secrets!"
-	
-	;joenote - adding text to note the change in badge stat boosts
-	para "Some temporarily"
-	line "boost stats when"
-	cont "in wild battles."
 	prompt
 
 _CeruleanHouse2Text_74e7c::
@@ -50,8 +45,8 @@ _CeruleanHouse2Text_74e9b::
 	cont "of battle."
 	prompt
 
-_CeruleanHouse2Text_74ea0::
-	text "The SPEED of all"
+_CeruleanHouse2Text_74ea0::	;joenote - updated with correct information
+	text "The DEFENSE of all"
 	line "#MON increases"
 	cont "a little bit."
 
@@ -72,8 +67,8 @@ _CeruleanHouse2Text_74ea5::
 	cont "side of battle."
 	prompt
 
-_CeruleanHouse2Text_74eaa::
-	text "The DEFENSE of all"
+_CeruleanHouse2Text_74eaa:: ;joenote - updated with correct information
+	text "The SPEED of all"
 	line "#MON increases"
 	cont "a little bit."
 
