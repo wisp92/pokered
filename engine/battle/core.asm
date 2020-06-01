@@ -7984,6 +7984,7 @@ SleepEffect:
 	jr z, .setSleepCounter
 	dec a	;joenote - sleep for at least +1 count since attacks can now happen on wakeup
 	jr z, .setSleepCounter
+	inc a
 	ld [de], a
 	call PlayCurrentMoveAnimation2
 	ld hl, FellAsleepText
