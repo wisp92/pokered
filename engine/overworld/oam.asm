@@ -129,6 +129,15 @@ PrepareOAMData:
 	ld a, [hSpritePriority]
 	or [hl]
 .skipPriority
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;gbcnote - GBC-only bits
+	res 3, a ;0=vram0 & 1=vram1
+	res 2, a; default of OBP0 uses palettes 0 to 3
+	bit 4, a ; 0=OBP0 or 1=OBP1
+	jr z, .spriteusesOBP0
+	set 2, a ; palettes 4-7 are OBP1
+.spriteusesOBP0
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	inc hl
 	ld [de], a
 	inc e
