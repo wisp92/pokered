@@ -2240,7 +2240,7 @@ UpdateGBCPal_OBP0::
 	jr z, .noChangeInOBP0
 	ld b, BANK(_UpdateGBCPal_OBP)
 	ld hl, _UpdateGBCPal_OBP
-	ld c, CONVERT_OBP0
+	ld d, CONVERT_OBP0
 	call Bankswitch
 .noChangeInOBP0
 	pop hl
@@ -2265,7 +2265,7 @@ UpdateGBCPal_OBP1::
 	jr z, .noChangeInOBP1
 	ld b, BANK(_UpdateGBCPal_OBP)
 	ld hl, _UpdateGBCPal_OBP
-	ld c, CONVERT_OBP1
+	ld d, CONVERT_OBP1
 	call Bankswitch
 .noChangeInOBP1
 	pop hl

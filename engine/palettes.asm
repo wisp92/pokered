@@ -905,7 +905,9 @@ index = index + 1
 	ret
 
 _UpdateGBCPal_OBP::
-; c = CONVERT_OBP0 or CONVERT_OBP1
+; d then c = CONVERT_OBP0 or CONVERT_OBP1
+	ld a, d
+	ld c, a
 index = 0
 	REPT NUM_ACTIVE_PALS
 		ld a, [wGBCBasePalPointers + index * 2]
