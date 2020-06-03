@@ -7981,10 +7981,10 @@ SleepEffect:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	call BattleRandom
 	and $7
-	jr z, .setSleepCounter
-	dec a	;joenote - sleep for at least +1 count since attacks can now happen on wakeup
-	jr z, .setSleepCounter
-	inc a
+	;joenote - sleep for at least +1 count since attacks can now happen on wakeup
+	;also made this more efficient
+	cp $2
+	jr c, .setSleepCounter
 	ld [de], a
 	call PlayCurrentMoveAnimation2
 	ld hl, FellAsleepText
