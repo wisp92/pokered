@@ -144,10 +144,10 @@ Girl Trainer
 - The game corner chief will buy pokemon from you post-e4
 - The bookcase in the ship tileset has been replaced with a ship's navigational pc
 - A ship's PC has been added to the ss. anne's kitchen and made functional
-- *v1.14 beta* fixed amazing man grpahical glitch
+- *v1.14 beta* fixed amazing man graphical glitch
 - *v1.14 beta* the transitional frame when turning 180 degrees now shows correctly
 - *v1.14 beta* The lower right corner tile of the mon back pic is blanked
-
+- *v1.14 beta* Fixed the flipped text for a girl in Saffron and the letter she is writing
 
 #Bugfixes:
 -----------
@@ -288,6 +288,7 @@ Girl Trainer
   - PC has a text prompt to tell you if its full after depositing
   - Exp.all now prints one message when splitting exp instead of for each party member
   - TMs and HMs now have their attacks (albeit abbreviated) appended to the item names
+  - Fixed the flipped text for a girl in Saffron and the letter she is writing
 
 - Adjustments to moves  
   - Stat-down moves no longer have a 25% miss chance in AI matches
