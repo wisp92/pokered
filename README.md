@@ -148,6 +148,7 @@ Girl Trainer
 - *v1.14 beta* The transitional frame when turning 180 degrees now shows correctly
 - *v1.14 beta* The lower right corner tile of the mon back pic is no longer blanked
 - *v1.14 beta* Fixed the flipped text for a girl in Saffron and the letter she is writing
+- *v1.14 beta* Fixed-damage moves now ignore effectiveness text & sfx
 
 #Bugfixes:
 -----------
@@ -203,6 +204,7 @@ Girl Trainer
      - undoes the stat changes of burn and paralysis
   - fixed-damage moves (seismic toss, dragon rage, etc) can no longer critically hit
   - fixed-damage moves now obey type immunities
+  - fixed-damage moves now ignore effectiveness text & sfx
   - Transform will no longer copy the opponent's Transform move. It's swapped-out for Struggle
   - Struggle is now TYPELESS so that it can always neutrally damage something
   - Metronome & mirror move will not increment PP if the user is transformed
