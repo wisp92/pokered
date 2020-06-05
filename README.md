@@ -144,9 +144,9 @@ Girl Trainer
 - The game corner chief will buy pokemon from you post-e4
 - The bookcase in the ship tileset has been replaced with a ship's navigational pc
 - A ship's PC has been added to the ss. anne's kitchen and made functional
-- *v1.14 beta* fixed amazing man graphical glitch
-- *v1.14 beta* the transitional frame when turning 180 degrees now shows correctly
-- *v1.14 beta* The lower right corner tile of the mon back pic is blanked
+- *v1.14 beta* Fixed amazing man graphical glitch
+- *v1.14 beta* The transitional frame when turning 180 degrees now shows correctly
+- *v1.14 beta* The lower right corner tile of the mon back pic is no longer blanked
 - *v1.14 beta* Fixed the flipped text for a girl in Saffron and the letter she is writing
 
 #Bugfixes:
@@ -262,6 +262,9 @@ Girl Trainer
   - Pokedoll is disallowed during ghost marowak battle
   - Can't use surf/teleport/escape rope to escape from trainer encounters
   - Can't fish or surf in the bases of statues
+  - Fixed amazing man graphical glitch
+  - The transitional frame when turning 180 degrees now shows correctly
+  - The lower right corner tile of the mon back pic is no longer blanked
 
 
 #TWEAKS:
