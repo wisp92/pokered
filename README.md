@@ -134,6 +134,7 @@ Girl Trainer
 - *v1.14 beta* fixed an problem with doubling sprite animation speed on certain maps
 - *v1.14 beta* minimum sleep counter value increased by +1 since attacks can now happen on wakeup
 - *v1.14 beta* cerulean badge-house guy now gives correct information about the thunder and soul badges
+- *v1.14 beta* exp all has a fix for applying roster flags in reverse order
 
 
 #New features & adjustments since last version:
