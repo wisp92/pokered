@@ -173,5 +173,4 @@ SetExpAllFlags:
 	or b	;append current flag values to a
 	ld b, a	; and save them back to b
 	jp .nextmonforexpall
-	
-	
+

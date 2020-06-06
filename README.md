@@ -135,6 +135,7 @@ Girl Trainer
 - *v1.14 beta* minimum sleep counter value increased by +1 since attacks can now happen on wakeup
 - *v1.14 beta* cerulean badge-house guy now gives correct information about the thunder and soul badges
 - *v1.14 beta* exp all has a fix for applying roster flags in reverse order
+- *v1.14 beta* exp all handles exp correctly when all your battle participants are knocked out
 
 
 #New features & adjustments since last version:
@@ -150,6 +151,7 @@ Girl Trainer
 - *v1.14 beta* The lower right corner tile of the mon back pic is no longer blanked
 - *v1.14 beta* Fixed the flipped text for a girl in Saffron and the letter she is writing
 - *v1.14 beta* Fixed-damage moves now ignore effectiveness text & sfx
+
 
 #Bugfixes:
 -----------
@@ -244,6 +246,7 @@ Girl Trainer
   - Hidden nugget in safari entrance now obtainable
   - EXP ALL should now dispense the correct exp if multiple pokemon take place in a battle
   - EXP ALL no longer counts fainted pokemon when dividing exp
+  - EXP ALL handles exp correctly when all your battle participants are knocked out
   - Enemy DVs can no longer be manipulated by having it use transform multiple times
   - Fixed a bug where itemfinder can't locate objects with a zero x or y coord
   - After defeating the cerulean burglar rocket, the guard itself always moves to prevent getting stuck in the front door
