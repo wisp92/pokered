@@ -151,6 +151,7 @@ Girl Trainer
 - *v1.14 beta* The lower right corner tile of the mon back pic is no longer blanked
 - *v1.14 beta* Fixed the flipped text for a girl in Saffron and the letter she is writing
 - *v1.14 beta* Fixed-damage moves now ignore effectiveness text & sfx
+- *v1.14 beta* glitched sprites can no longer cause a buffer overflow that corrupts the hall of fame
 
 
 #Bugfixes:
@@ -184,7 +185,9 @@ Girl Trainer
   - New custom function for undoing the stat changes of burn and paralysis
     - undoing paralysis is accurate to within 0 to -3 points
     - undoing burn is accurate to within 0 to -1 point
-  
+  - PP-up uses are disregarded when determining to use STRUGGLE if one or more moves are disabled
+
+	
 - Move fixes
   - dire hit/focus energy now quadruples crit rate instead of quarters
   - sleep now normal-chance hits a pkmn recharging from hyperbeam, but has no effect if it's already status-effected
@@ -230,28 +233,29 @@ Girl Trainer
 	  - player/enemy pkmn is fully paralyzed or after hurting itself in confusion
     - Crash damage from jump kicks and pkmn hurting itself cannot be Countered
 
-- Misc. fixes
-  - Great ball has a ball factor of 12 now
-  - Cinnabar/seafoam islands coast glitch fixed (no more missingo or artificially loading pokemon data)
-  - Stone evolutions cannot be triggered via level-up anymore
-  - Catching a transformed pokemon no longer defaults to catching a ditto
+	
+- Graphical Fixes
+  - Glitched sprites can no longer cause a buffer overflow that corrupts the hall of fame
   - Returning from the status screen when an opponent is in substitute/minimize no longer glitches the graphics
-  - PP-up uses are disregarded when determining to use STRUGGLE if one or more moves are disabled
   - PC graphic restored to celadon hotel
   - A tile in cinnabar mansion 3f is slightly modified to prevent getting permanently stuck
   - A tile in cerulean cave 1f adjusted so there isn't a walkable cliff tile
-  - Ether and elixer now account for PP-ups used when determining if move is at full PP
-  - Vending machine now checks for the correct amount of money
-  - Prevented byte overflow when determining the trash can with 2nd switch in vermillion gym
-  - Hidden nugget in safari entrance now obtainable
-  - EXP ALL should now dispense the correct exp if multiple pokemon take place in a battle
-  - EXP ALL no longer counts fainted pokemon when dividing exp
-  - EXP ALL handles exp correctly when all your battle participants are knocked out
-  - Enemy DVs can no longer be manipulated by having it use transform multiple times
-  - Fixed a bug where itemfinder can't locate objects with a zero x or y coord
   - After defeating the cerulean burglar rocket, the guard itself always moves to prevent getting stuck in the front door
-  - Slot machine reel bug fixed
-  - Fixed oversights in reel functionality to better match Gamfreak's intent
+  - No more ABCD glitched sprites when using teleport without a super gameboy
+  - Fixed amazing man graphical glitch
+  - The transitional frame when turning 180 degrees now shows correctly
+  - The lower right corner tile of the mon back pic is no longer blanked
+  
+
+- Item Fixes  
+  - Great ball has a ball factor of 12 now
+  - Stone evolutions cannot be triggered via level-up anymore
+  - Ether and elixer now account for PP-ups used when determining if move is at full PP
+  - EXP ALL fixes
+    - should now dispense the correct exp if multiple pokemon take place in a battle
+	- no longer counts fainted pokemon when dividing exp
+	- handles exp correctly when all your battle participants are knocked out
+  - Fixed a bug where itemfinder can't locate objects with a zero x or y coord
   - Surfboard bugfixes:
 	  - cannot use the surfboard if being forced to ride the bicycle
 	  - no longer freezes the game when using it from the item menu to get back on land
@@ -262,17 +266,24 @@ Girl Trainer
     - Paralyze heal undoes the speed stat changes
     - Full restore at max hp undoes the stat changes of brn/par
   - Full Restore when used in battle to heal HP now undoes the stat changes of brn/par
-  - No more ABCD glitched sprites when using teleport without a super gameboy
+  - Pokedoll is disallowed during ghost marowak battle
+
+
+- Misc. fixes
+  - Cinnabar/seafoam islands coast glitch fixed (no more missingo or artificially loading pokemon data)
+  - Catching a transformed pokemon no longer defaults to catching a ditto
+  - Vending machine now checks for the correct amount of money
+  - Prevented byte overflow when determining the trash can with 2nd switch in vermillion gym
+  - Hidden nugget in safari entrance now obtainable
+  - Enemy DVs can no longer be manipulated by having it use transform multiple times
+  - Slot machine reel bug fixed
+  - Fixed oversights in reel functionality to better match Gamfreak's intent
   - The lift key in the rocket hideout drops during the end of battle text like in Yellow-version
   - An unused bit is now used to determine the ghost marowak battle
-  - Pokedoll is disallowed during ghost marowak battle
   - Can't use surf/teleport/escape rope to escape from trainer encounters
   - Can't fish or surf in the bases of statues
-  - Fixed amazing man graphical glitch
-  - The transitional frame when turning 180 degrees now shows correctly
-  - The lower right corner tile of the mon back pic is no longer blanked
 
-
+  
 #TWEAKS:
 -----------
 
