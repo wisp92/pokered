@@ -992,7 +992,7 @@ FaintEnemyPokemon:
 	jr nz, .noZeroParticipants
 	pop af
 	jp .expallfix_end	;all your battle participants are toast. don't even bother giving them exp
-	.noZeroParticipants
+.noZeroParticipants
 
 
 ; the player has exp all
