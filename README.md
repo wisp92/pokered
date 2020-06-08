@@ -152,6 +152,7 @@ Girl Trainer
 - *v1.14 beta* Fixed the flipped text for a girl in Saffron and the letter she is writing
 - *v1.14 beta* Fixed-damage moves now ignore effectiveness text & sfx
 - *v1.14 beta* glitched sprites can no longer cause a buffer overflow that corrupts the hall of fame
+- *v1.14 beta* Fixed list-type mismatch when machines and items share the same menu
 
 
 #Bugfixes:

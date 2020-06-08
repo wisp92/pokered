@@ -1486,9 +1486,9 @@ DisplayListMenuIDLoop::
 	call PlaceUnfilledArrowMenuCursor
 
 ; pointless because both values are overwritten before they are read
-	ld a, $01
-	ld [wMenuExitMethod], a
-	ld [wChosenMenuItem], a
+	;ld a, $01
+	;ld [wMenuExitMethod], a
+	;ld [wChosenMenuItem], a
 
 	xor a
 	ld [wMenuWatchMovingOutOfBounds], a
@@ -1971,8 +1971,8 @@ GetItemName::
 	jr .Finish
 .Machine
 	ld [wd0b5], a
-	ld a, TMHM_NAME
-	ld [wNameListType], a
+	;ld a, TMHM_NAME	;this will be done within GetName since it has a tm/hm check
+	;ld [wNameListType], a
 	ld a, BANK(tmhmNames)
 	ld [wPredefBank], a
 	call GetName
@@ -3340,9 +3340,12 @@ GetName::
 	cp HM_01
 	;jp nc, GetMachineName	;joenote - function removed. Handle list-based tm & hm names here.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;joenote - do some stuff if the item is a machine
 	jr c, .notMachine
 	sub $C3	;need to shift things because tm and hm constants are offset by +$C3 from the first item constant
 	ld [wd0b5], a
+	ld a, TMHM_NAME	
+	ld [wNameListType], a
 .notMachine
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	ld a, [H_LOADEDROMBANK]
@@ -3405,8 +3408,16 @@ GetName::
 .gotPtr
 ;	ld a, e
 ;	ld [wUnusedCF8D], a
-	ld a, d
+;	ld a, d
 ;	ld [wUnusedCF8D + 1], a
+
+	ld a, [wd11e]
+	cp HM_01
+	jr c, .notMachine2
+	ld a, ITEM_NAME	;this needs to be reset because machines can be in the same listings as items	
+	ld [wNameListType], a
+.notMachine2
+
 	pop de
 	pop bc
 	pop hl
