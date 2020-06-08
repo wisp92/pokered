@@ -146,7 +146,6 @@ Girl Trainer
 - The game corner chief will buy pokemon from you post-e4
 - The bookcase in the ship tileset has been replaced with a ship's navigational pc
 - A ship's PC has been added to the ss. anne's kitchen and made functional
-- *v1.14 beta* Fixed amazing man graphical glitch
 - *v1.14 beta* The transitional frame when turning 180 degrees now shows correctly
 - *v1.14 beta* The lower right corner tile of the mon back pic is no longer blanked
 - *v1.14 beta* Fixed the flipped text for a girl in Saffron and the letter she is writing
@@ -243,7 +242,6 @@ Girl Trainer
   - A tile in cerulean cave 1f adjusted so there isn't a walkable cliff tile
   - After defeating the cerulean burglar rocket, the guard itself always moves to prevent getting stuck in the front door
   - No more ABCD glitched sprites when using teleport without a super gameboy
-  - Fixed amazing man graphical glitch
   - The transitional frame when turning 180 degrees now shows correctly
   - The lower right corner tile of the mon back pic is no longer blanked
   
