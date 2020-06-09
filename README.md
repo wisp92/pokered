@@ -137,6 +137,7 @@ Girl Trainer
 - *v1.14 beta* exp all has a fix for applying roster flags in reverse order
 - *v1.14 beta* exp all handles exp correctly when all your battle participants are knocked out
 - *v1.14 beta* The message about fast current now displays when using the surf hotkey
+- *v1.14 beta* Fixed list-type mismatch when machines and items share the same menu
 
 
 #New features & adjustments since last version:
@@ -152,7 +153,6 @@ Girl Trainer
 - *v1.14 beta* Fixed the flipped text for a girl in Saffron and the letter she is writing
 - *v1.14 beta* Fixed-damage moves now ignore effectiveness text & sfx
 - *v1.14 beta* glitched sprites can no longer cause a buffer overflow that corrupts the hall of fame
-- *v1.14 beta* Fixed list-type mismatch when machines and items share the same menu
 - *v1.14 beta* Seafoam islands fast current applied to the right steps on floor B3
 
 
@@ -283,6 +283,7 @@ Girl Trainer
   - An unused bit is now used to determine the ghost marowak battle
   - Can't use surf/teleport/escape rope to escape from trainer encounters
   - Can't fish or surf in the bases of statues
+  - Seafoam islands fast current applied to the right steps on floor B3
 
   
 #TWEAKS:
