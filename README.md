@@ -153,6 +153,7 @@ Girl Trainer
 - *v1.14 beta* Fixed-damage moves now ignore effectiveness text & sfx
 - *v1.14 beta* glitched sprites can no longer cause a buffer overflow that corrupts the hall of fame
 - *v1.14 beta* Fixed list-type mismatch when machines and items share the same menu
+- *v1.14 beta* Seafoam islands fast current applied to the right steps on floor B3
 
 
 #Bugfixes:
