@@ -123,20 +123,26 @@ CheckForSmartHMuse:
 ;check for surfing
 	ld a, [wObtainedBadges]
 	bit 4, a ; does the player have the Soul Badge?
-	jr z, .nosurf
+	jp z, .nosurf
 	ld a, [wWalkBikeSurfState]
 	ld [wWalkBikeSurfStateCopy], a
 	cp 2 ; is the player already surfing?
-	jr z, .nosurf	
+	jp z, .nosurf	
 	;surfing not allowed if forced to ride bike
 	ld a, [wd732]
 	bit 5, a
 	jr nz, .nosurf
+	;load a 1 into wActionResultOrTookBattleTurn as a marker that we are checking surf from this function
+	ld a, $01  
+	ld [wActionResultOrTookBattleTurn], a
 	callba IsSurfingAllowed
+	xor a
+	ld [wActionResultOrTookBattleTurn], a
+	;now check bit to see of surfing allowed
 	ld hl, wd728
 	bit 1, [hl]
 	res 1, [hl]
-	jr z, .nosurf
+	jp z, .nosurf
 	callba IsNextTileShoreOrWater	;unsets carry if player is facing water or shore
 	jr c, .nosurf
 	ld hl, TilePairCollisionsWater
@@ -149,7 +155,7 @@ CheckForSmartHMuse:
 	;check if a party member has surf
 	ld c, SURF
 	call PartyMoveTest
-	jr z, .nosurf
+	jp z, .nosurf
 .beginsurfing
 	;we can now initiate surfing
 	ld hl, wd730

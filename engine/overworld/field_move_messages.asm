@@ -38,11 +38,24 @@ IsSurfingAllowed:
 	ld hl, wd728
 	res 1, [hl]
 	
+	;run alternate code if coming here from the overworld hotkey function
+	ld a, [wActionResultOrTookBattleTurn]
+	and a
+	jr nz, .alt_fastcurrent
+	
+	ld hl, CurrentTooFastText
+	jp PrintText
+.forcedToRideBike
+	ld hl, wd728
+	res 1, [hl]
+	ld hl, CyclingIsFunText
+	jp PrintText
+.alt_fastcurrent
 	;initialize a text box without drawing anything special. makes this show up with surf hotkeys
 	ld a, 1
 	ld [wAutoTextBoxDrawingControl], a
 	callba DisplayTextIDInit
-	
+
 	ld hl, CurrentTooFastText
 	call PrintText
 	
@@ -50,13 +63,8 @@ IsSurfingAllowed:
 	ld a, $FF
 	ld [hSpriteIndexOrTextID], a
 	jp DisplayTextID
-	
-.forcedToRideBike
-	ld hl, wd728
-	res 1, [hl]
-	ld hl, CyclingIsFunText
-	jp PrintText
 
+	
 CoordsData_cdf7:
 	db $0B,$07,$FF
 
