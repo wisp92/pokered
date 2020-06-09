@@ -37,8 +37,20 @@ IsSurfingAllowed:
 	ret nc
 	ld hl, wd728
 	res 1, [hl]
+	
+	;initialize a text box without drawing anything special. makes this show up with surf hotkeys
+	ld a, 1
+	ld [wAutoTextBoxDrawingControl], a
+	callba DisplayTextIDInit
+	
 	ld hl, CurrentTooFastText
-	jp PrintText
+	call PrintText
+	
+	;use $ff value loaded into hSpriteIndexOrTextID to make DisplayTextID display nothing and close any text
+	ld a, $FF
+	ld [hSpriteIndexOrTextID], a
+	jp DisplayTextID
+	
 .forcedToRideBike
 	ld hl, wd728
 	res 1, [hl]

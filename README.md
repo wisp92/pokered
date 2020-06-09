@@ -136,6 +136,7 @@ Girl Trainer
 - *v1.14 beta* cerulean badge-house guy now gives correct information about the thunder and soul badges
 - *v1.14 beta* exp all has a fix for applying roster flags in reverse order
 - *v1.14 beta* exp all handles exp correctly when all your battle participants are knocked out
+- *v1.14 beta* The message about fast current now displays when using the surf hotkey
 
 
 #New features & adjustments since last version:
