@@ -154,6 +154,7 @@ Girl Trainer
 - *v1.14 beta* Fixed-damage moves now ignore effectiveness text & sfx
 - *v1.14 beta* glitched sprites can no longer cause a buffer overflow that corrupts the hall of fame
 - *v1.14 beta* Seafoam islands fast current applied to the right steps on floor B3
+- *v1.14 beta* Amazing man glitch fixed
 
 
 #Bugfixes:
@@ -246,6 +247,7 @@ Girl Trainer
   - No more ABCD glitched sprites when using teleport without a super gameboy
   - The transitional frame when turning 180 degrees now shows correctly
   - The lower right corner tile of the mon back pic is no longer blanked
+  - Amazing man can no longer be triggered by text boxes or the start menu (via a code tweak from Yellow-version)
   
 
 - Item Fixes  
