@@ -592,11 +592,12 @@ Girl Trainer
 
 #CREDITS / SPECIAL THANKS:
 -----------
-- The Pret team for providing the base disassembly and all the code comments that came with it.
+- The Pret team for the pokered and pokeyellow disassemblies and all the code comments that came with them.
 - Rangi for the tool Polished Map
 - Exp bar coded by Danny-E 33
 - Move deleter/relearner coded by TheFakeMateo for Pokemon Red++
-- The following folks for their great tutorials, glitch videos, and explanations across the internet:
+- Code contributions and bugfixing by wisp92
+- The following folks for their great tutorials, glitch videos, and explanations across the internet
   - TheFakeMateo 
   - Crystal_
   - ChickasaurusGL
@@ -606,3 +607,4 @@ Girl Trainer
   - JOBOalthor1992
   - krazsen
   - kmalove
+  - zycain
