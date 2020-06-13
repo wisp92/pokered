@@ -138,6 +138,7 @@ Girl Trainer
 - *v1.14 beta* exp all handles exp correctly when all your battle participants are knocked out
 - *v1.14 beta* The message about fast current now displays when using the surf hotkey
 - *v1.14 beta* Fixed list-type mismatch when machines and items share the same menu
+- *v1.14 beta* Applied a fix for skipping moves on level up that relies on pokemon levels at the start of battle
 
 
 #New features & adjustments since last version:
