@@ -155,6 +155,10 @@ Girl Trainer
 - *v1.14 beta* glitched sprites can no longer cause a buffer overflow that corrupts the hall of fame
 - *v1.14 beta* Seafoam islands fast current applied to the right steps on floor B3
 - *v1.14 beta* Amazing man glitch fixed
+- *v1.14 beta* The rival encounters on route 22 now show an exclamation bubble that never showed up originally
+- *v1.14 beta* Each of the two boulder puzzles in seafoam islands will fully reset until completed
+- *v1.14 beta* The boulder switches never reset while inside victory road and they will always reset upon leaving
+- *v1.14 beta* While inside victory road, boulders placed on switches will stay there between floor transitions
 
 
 #Bugfixes:
@@ -248,6 +252,7 @@ Girl Trainer
   - The transitional frame when turning 180 degrees now shows correctly
   - The lower right corner tile of the mon back pic is no longer blanked
   - Amazing man can no longer be triggered by text boxes or the start menu (via a code tweak from Yellow-version)
+  - The rival encounters on route 22 now show an exclamation bubble that never showed up originally
   
 
 - Item Fixes  
@@ -286,8 +291,11 @@ Girl Trainer
   - Can't use surf/teleport/escape rope to escape from trainer encounters
   - Can't fish or surf in the bases of statues
   - Seafoam islands fast current applied to the right steps on floor B3
+  - Each of the two boulder puzzles in seafoam islands will fully reset until completed
+  - The boulder switches never reset while inside victory road and they will always reset upon leaving
+  - While inside victory road, boulders placed on switches will stay there between floor transitions
 
-  
+
 #TWEAKS:
 -----------
 
