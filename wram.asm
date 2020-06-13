@@ -1059,11 +1059,6 @@ wHoFMonOrPlayer:: ; cd40
 ; 0 = mon
 ; 1 = player
 
-; wispnote - PKMN Levels at the Begining of a Battle.
-; Required to correctly execute the level-up procedure.
-wStartBattleLevels:: 
-	;ds PARTY_LENGTH which is 6 bytes
-	
 wSlotMachineWheel3Offset:: ; cd40
 
 wPlayerSpinInPlaceAnimSoundID:: ; cd40
@@ -1130,6 +1125,11 @@ wSlotMachineWheel3BottomTile:: ; cd47
 	ds 1
 
 wSlotMachineWheel3MiddleTile:: ; cd48
+
+; wispnote - PKMN Levels at the Begining of a Battle.
+; Required to correctly execute the level-up procedure.
+wStartBattleLevels:: 
+	;ds PARTY_LENGTH which is 6 bytes
 
 wFacingDirectionList:: ; cd48
 ; 4 bytes (also, the byte before the start of the list (cd47) is used a temp
