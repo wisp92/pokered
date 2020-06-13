@@ -1061,8 +1061,8 @@ wHoFMonOrPlayer:: ; cd40
 
 ; wispnote - PKMN Levels at the Begining of a Battle.
 ; Required to correctly execute the level-up procedure.
-wStartBattleLevels:: ds PARTY_LENGTH
-	;6 bytes
+wStartBattleLevels:: 
+	;ds PARTY_LENGTH which is 6 bytes
 	
 wSlotMachineWheel3Offset:: ; cd40
 
