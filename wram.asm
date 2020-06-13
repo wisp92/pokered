@@ -1059,6 +1059,11 @@ wHoFMonOrPlayer:: ; cd40
 ; 0 = mon
 ; 1 = player
 
+; wispnote - PKMN Levels at the Begining of a Battle.
+; Required to correctly execute the level-up procedure.
+wStartBattleLevels:: ds PARTY_LENGTH
+	;6 bytes
+	
 wSlotMachineWheel3Offset:: ; cd40
 
 wPlayerSpinInPlaceAnimSoundID:: ; cd40
@@ -3288,8 +3293,8 @@ wEXPBarBaseEXP::      ds 3
 wEXPBarCurEXP::       ds 3
 wEXPBarNeededEXP::    ds 3
 wEXPBarKeepFullFlag:: ds 1
-
 ; deed
+
 
 SECTION "Stack", WRAM0[$df00]
 	ds $ff
