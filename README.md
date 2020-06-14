@@ -139,6 +139,7 @@ Girl Trainer
 - *v1.14 beta* The message about fast current now displays when using the surf hotkey
 - *v1.14 beta* Fixed list-type mismatch when machines and items share the same menu
 - *v1.14 beta* Applied a fix for skipping moves on level up that relies on pokemon levels at the start of battle
+- *v1.14 beta* Trainer scaling is now based on the strongest member of your party
 
 
 #New features & adjustments since last version:
@@ -450,7 +451,7 @@ Girl Trainer
 -----------
 
 #Difficulty and scalable trainers
-- There is an option to scale trainer rosters to the level of your 1st roster pkmn
+- There is an option to scale trainer rosters to the level of your strongest roster pkmn
   - Talk to the right aide in Oak's lab to toggle on/off
   - Enemy pkmn will evolve by level if applicable
   - Gym leaders and the E4 scale slightly higher than normal trainers

@@ -133,9 +133,12 @@ ScaleTrainer:
 	CheckEvent EVENT_90C
 	ret z
 	push bc
+	jr .getHighestLevel
+.backFromLVLCheck
+	push af
 	ld a, [wCurEnemyLVL]
 	ld b, a
-	ld a, [wPartyMon1Level]
+	pop af
 	cp b
 	jr c, .nolvlincrease
 	jr z, .nolvlincrease
@@ -160,6 +163,23 @@ ScaleTrainer:
 	pop bc
 	callba EnemyMonEvolve
 	ret
+.getHighestLevel
+	push hl
+	ld hl, wStartBattleLevels
+	ld a, [wPartyCount]	;1 to 6
+	ld b, a	;use b for countdown
+.loadHigher
+	ld a, [hl]
+.keepCurrent
+	dec b
+	jr z, .highestLVLfound
+	inc hl
+	cp a, [hl]
+	jr c, .loadHigher
+	jr .keepCurrent
+.highestLVLfound
+	pop hl
+	jr .backFromLVLCheck
 
 
 ; return a = 0 if not in safari zone, else a = 1 if in safari zone
